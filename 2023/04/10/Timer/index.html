@@ -14,19 +14,19 @@
   <meta name="description" content="123456789func _ready():	#generate a timer	var timer &#x3D; Timer.new()	timer.wait_time &#x3D; 5	timer.one_shot &#x3D; true	timer.connect(&quot;timeout&quot;,self,&quot;control_scope&quot;)	#_on_timer_timeout	add_">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Timer">
-<meta property="og:url" content="http://duck-ridge.github.io/2023/05/04/Timer/index.html">
+<meta property="og:url" content="http://duck-ridge.github.io/2023/04/10/Timer/index.html">
 <meta property="og:site_name" content="Duck Ridge">
 <meta property="og:description" content="123456789func _ready():	#generate a timer	var timer &#x3D; Timer.new()	timer.wait_time &#x3D; 5	timer.one_shot &#x3D; true	timer.connect(&quot;timeout&quot;,self,&quot;control_scope&quot;)	#_on_timer_timeout	add_">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://duck-ridge.github.io/2023/05/04/Timer/timer1.png">
-<meta property="og:image" content="http://duck-ridge.github.io/2023/05/04/Timer/timer2.png">
-<meta property="article:published_time" content="2023-05-04T07:40:30.000Z">
-<meta property="article:modified_time" content="2023-05-04T08:27:41.271Z">
+<meta property="og:image" content="http://duck-ridge.github.io/2023/04/10/Timer/timer1.png">
+<meta property="og:image" content="http://duck-ridge.github.io/2023/04/10/Timer/timer2.png">
+<meta property="article:published_time" content="2023-04-10T04:40:30.000Z">
+<meta property="article:modified_time" content="2023-05-04T16:55:28.623Z">
 <meta property="article:author" content="Todd Hwang">
 <meta property="article:tag" content="Godot">
 <meta property="article:tag" content="Widget">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://duck-ridge.github.io/2023/05/04/Timer/timer1.png">
+<meta name="twitter:image" content="http://duck-ridge.github.io/2023/04/10/Timer/timer1.png">
   
     <link rel="alternate" href="/atom.xml" title="Duck Ridge" type="application/atom+xml">
   
@@ -154,8 +154,8 @@
     
     <div class="article-meta">
       
-	<a href="/2023/05/04/Timer/" class="article-date">
-	  <time datetime="2023-05-04T07:40:30.000Z" itemprop="datePublished">2023-05-04</time>
+	<a href="/2023/04/10/Timer/" class="article-date">
+	  <time datetime="2023-04-10T04:40:30.000Z" itemprop="datePublished">2023-04-10</time>
 	</a>
 
       
@@ -165,9 +165,9 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <img src="/2023/05/04/Timer/timer1.png" class="" title="timer">
+        <img src="/2023/04/10/Timer/timer1.png" class="" title="timer">
 
-<img src="/2023/05/04/Timer/timer2.png" class="" title="timer">
+<img src="/2023/04/10/Timer/timer2.png" class="" title="timer">
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func _ready():</span><br><span class="line">	#generate a timer</span><br><span class="line">	var timer = Timer.new()</span><br><span class="line">	timer.wait_time = 5</span><br><span class="line">	timer.one_shot = true</span><br><span class="line">	timer.connect(&quot;timeout&quot;,self,&quot;control_scope&quot;)</span><br><span class="line">	#_on_timer_timeout</span><br><span class="line">	add_child(timer)</span><br><span class="line">	timer.start()</span><br></pre></td></tr></table></figure>
 
       
