@@ -17,7 +17,7 @@
 <meta property="og:description" content="Calculate the sum of distance when you using navigation2DHere is a solution to calculate the sum of distance when you using navigation2D.  This solution is useful when you using Godot 3.5: if you are">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-06T08:31:29.000Z">
-<meta property="article:modified_time" content="2023-05-06T10:27:21.265Z">
+<meta property="article:modified_time" content="2023-05-08T05:58:47.547Z">
 <meta property="article:author" content="Todd Hwang">
 <meta name="twitter:card" content="summary">
   
@@ -164,6 +164,14 @@
 <li>I’m not sure there are any built-in functions to calculate the distance directly, that’s also why I made this post.</li>
 </ul>
 <h2 id="Situation"><a href="#Situation" class="headerlink" title="Situation"></a>Situation</h2><p>Here a illustrator is drew to interpret the situation:</p>
+<p>According to the game that I create monster trace down the player by using Godot navigation2D system which means Godot allow the monster generate the path to player automatically and update the routine to a moving object (player)</p>
+<p>When enemy chasing player, the path is actually assembly by a set of turning points. Enemy head to point 1, adjust direction, then head to point2 until it eventually reach the target (player).</p>
+<p>There are 4 points in this situation based on the illustrator. To know the length of path, the length of straight line between adjacent points. What we need to do is add them together.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#calculate the distance from enemy to player</span><br><span class="line">func measure_distance_enemy_player():</span><br><span class="line">  # the &quot;turning_points&quot; is PoolVector2Array which means this is the array with</span><br><span class="line">	var turning_points = $Navigation2D.get_simple_path($Navigation2D/Enemy_test.global_position, $Player.global_position)</span><br><span class="line">	var points_size = turning_points.size()</span><br><span class="line">	var points_distance_sum = 0</span><br><span class="line"></span><br><span class="line">	for point in (points_size - 1):</span><br><span class="line">		var single_distance = turning_points[point].distance_to(turning_points[point + 1])</span><br><span class="line">		points_distance_sum += single_distance</span><br><span class="line"></span><br><span class="line">	distance_enemy_player = points_distance_sum</span><br></pre></td></tr></table></figure>
+
+
+
+<p>get_next_location</p>
 
       
     </div>
