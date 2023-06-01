@@ -20,7 +20,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://duck-ridge.github.io/2023/04/10/Timer/timer1.jpg">
 <meta property="article:published_time" content="2023-04-10T04:40:30.000Z">
-<meta property="article:modified_time" content="2023-05-05T04:29:44.666Z">
+<meta property="article:modified_time" content="2023-05-26T10:51:11.283Z">
 <meta property="article:author" content="Todd Hwang">
 <meta property="article:tag" content="Godot">
 <meta property="article:tag" content="Widget">
@@ -178,6 +178,8 @@
 <p>When the generated timer count to 0, it will continue with certain actions.</p>
 <p>Here is a little solution if you plan to generate a timer by script.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">func _ready():</span><br><span class="line">	#generate a var timer which derive from a abstract &quot;Timer&quot;</span><br><span class="line">	var new_timer = Timer.new()</span><br><span class="line"></span><br><span class="line">  # Set the parameters of new_timer</span><br><span class="line">	new_timer.wait_time = 5</span><br><span class="line">	new_timer.one_shot = true</span><br><span class="line"></span><br><span class="line">  # connect this signal, when it count to 0, timer will emit a signal called &quot;time_out()&quot;</span><br><span class="line">  # then, it will looking for the &quot;example function&quot; in target script (here is &quot;self&quot;/ local)</span><br><span class="line">	new_timer.connect(&quot;timeout&quot;,self,&quot;example execute&quot;)</span><br><span class="line"></span><br><span class="line">  # add this new created timer to scene as child node and start it.</span><br><span class="line">	add_child(new_timer)</span><br><span class="line">	new_timer.start()</span><br></pre></td></tr></table></figure>
+
+<p>在property栏中创建一个选择文件的export var仅限于tscn文件<br>export(string, FILE, “*.tscn”) var</p>
 
       
     </div>
