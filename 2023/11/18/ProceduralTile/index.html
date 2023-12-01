@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>sloma_setting | Duck Ridge</title>
+  <title>proceduraltile | Duck Ridge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta name="description" content="How to let instance not work simoutenouslyGO CHECK YOUR INHERITED “EXPORT VAR” BOOL AT THE TOP OF THE SCRIPT!">
+  <meta name="description" content="Frankly speaking, I’m not good at using setget and tool script in editor.According to my superficial acquaintance knowledge. Setget function is affiliate to an appointed variable.Whenever it got modif">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sloma_setting">
-<meta property="og:url" content="http://duck-ridge.github.io/2023/10/26/sloma-setting/index.html">
+<meta property="og:title" content="ProceduralTile">
+<meta property="og:url" content="http://duck-ridge.github.io/2023/11/18/ProceduralTile/index.html">
 <meta property="og:site_name" content="Duck Ridge">
-<meta property="og:description" content="How to let instance not work simoutenouslyGO CHECK YOUR INHERITED “EXPORT VAR” BOOL AT THE TOP OF THE SCRIPT!">
+<meta property="og:description" content="Frankly speaking, I’m not good at using setget and tool script in editor.According to my superficial acquaintance knowledge. Setget function is affiliate to an appointed variable.Whenever it got modif">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-26T07:17:48.000Z">
-<meta property="article:modified_time" content="2023-11-30T12:49:42.001Z">
+<meta property="article:published_time" content="2023-11-18T03:40:56.000Z">
+<meta property="article:modified_time" content="2023-11-18T10:56:01.512Z">
 <meta property="article:author" content="Todd Hwang">
 <meta name="twitter:card" content="summary">
   
@@ -131,7 +131,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-sloma-setting" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-ProceduralTile" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -139,7 +139,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      sloma_setting
+      ProceduralTile
     </h1>
   
 
@@ -147,8 +147,8 @@
     
     <div class="article-meta">
       
-	<a href="/2023/10/26/sloma-setting/" class="article-date">
-	  <time datetime="2023-10-26T07:17:48.000Z" itemprop="datePublished">2023-10-26</time>
+	<a href="/2023/11/18/ProceduralTile/" class="article-date">
+	  <time datetime="2023-11-18T03:40:56.000Z" itemprop="datePublished">2023-11-18</time>
 	</a>
 
       
@@ -158,7 +158,10 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>How to let instance not work simoutenously<br>GO CHECK YOUR INHERITED “EXPORT VAR” BOOL AT THE TOP OF THE SCRIPT!</p>
+        <p>Frankly speaking, I’m not good at using setget and tool script in editor.<br>According to my superficial acquaintance knowledge. Setget function is affiliate to an appointed variable.<br>Whenever it got modified, the following function will changed by variable. That’s why such a function has to acquire a parameter.<br>In terms of tool script, it is a specific type of script which can execute in the editor mode.</p>
+<p>This is a ProceduralTile practice perfectly review these functions.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">tool</span><br><span class="line">extends TileMap</span><br><span class="line"></span><br><span class="line">export(bool) var lock_pattern = false</span><br><span class="line">export(int) var random_int = 0 setget tilemapRandomization</span><br><span class="line"></span><br><span class="line">func tilemapRandomization(random_input: int):</span><br><span class="line">	if lock_pattern:</span><br><span class="line">		return</span><br><span class="line"></span><br><span class="line">	random_int = random_input</span><br><span class="line">	var rng = RandomNumberGenerator.new()</span><br><span class="line">	rng.randomize()</span><br><span class="line"></span><br><span class="line">	if Engine.is_editor_hint():</span><br><span class="line">		for cell_position in get_used_cells():</span><br><span class="line">			var num : int = 0</span><br><span class="line">			if random_int != 0:</span><br><span class="line">				num = rng.randi_range(0, 3)</span><br><span class="line">			set_cellv(cell_position, num)</span><br></pre></td></tr></table></figure>
+<p>set “Engine.is_editor_hint()” is very important. It is a way to tell the status and if the script can be executed.</p>
 
       
     </div>
@@ -176,19 +179,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2023/11/13/shader/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          shader
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/10/24/save-load/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/11/16/shader-blaster/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">save_load</div>
+      <div class="article-nav-title">shader-blaster</div>
     </a>
   
 </nav>

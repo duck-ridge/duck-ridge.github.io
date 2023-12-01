@@ -17,7 +17,7 @@
 <meta property="og:description" content="这是一个有挑战性的工作一般情况下你需要为整个画面盖上一个完全黑暗的 canvas module。然后在需要照明的地方使用 light2D 来模拟灯光效果对于那些阴影，你则需要加上相应的 occlusion 来阻挡光照 然而当你碰到 parallax background 的时候事情复杂了起来。你会发现 parallax background 的sprite不受 canvas module 的黑暗所">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-24T05:32:21.000Z">
-<meta property="article:modified_time" content="2023-10-25T05:59:08.082Z">
+<meta property="article:modified_time" content="2023-11-16T09:45:25.950Z">
 <meta property="article:author" content="Todd Hwang">
 <meta name="twitter:card" content="summary">
   
@@ -164,8 +164,6 @@
 <p>与此同时设定 light2D 的properties: range : Layer Min, Layer Max 这决定了你的 light 2D 能影响到的范围。确保parallax的 layer 也在这个range的范围之内。简而言之，一个手电筒需要照亮两个图层。</p>
 <p>以下为reddit上看到的解决方案</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Struggled for this problem for a long time. Hope it can help others who see this post in the future.</span><br><span class="line"></span><br><span class="line">My godot version is 3.2.3</span><br><span class="line"></span><br><span class="line">ParallaxLayer has a property &quot;layer&quot;, the [Layer Min, Layer Max] of your light2D should cover this layer, so that the light can affect the parallax layer.</span><br><span class="line"></span><br><span class="line">CanvasModulate are not only applied on layer 0, the default layer is 0, and your CanvasModulate attached to your &quot;Node2D&quot;(on Layer 0), so only layer 0 are affect in this usage.</span><br><span class="line"></span><br><span class="line">add an additional CanvasModulate under &quot;ParallaxBackground&quot;, it will be applied to that layer.</span><br></pre></td></tr></table></figure>
-
-<p>I WANT TO GIVE HER A SOUL!</p>
 
       
     </div>
