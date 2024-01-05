@@ -9,14 +9,14 @@
   
   
   
-  <meta name="description" content="Just Make Games">
+  <meta name="description" content="Make Games And Some Sorts">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Duck Ridge">
 <meta property="og:url" content="http://duck-ridge.github.io/page/3/index.html">
 <meta property="og:site_name" content="Duck Ridge">
-<meta property="og:description" content="Just Make Games">
+<meta property="og:description" content="Make Games And Some Sorts">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="Todd Hwang">
+<meta property="article:author" content="Todd Huang">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Duck Ridge" type="application/atom+xml">
@@ -113,7 +113,7 @@
                   
                     <div class="item">
                   
-                    <img id="carousel-img1" src="/css/images/sample.jpg">
+                    <img id="carousel-img1" src="/css/images/sample.png">
                   </div>
 
                   <!-- 自适应大图 -->
@@ -127,6 +127,27 @@
                         } else {
                           imageTag1.style.height = document.body.clientHeight + "px";
                           imageTag1.style.marginLeft = -(document.body.clientHeight * img1.width / img1.height - document.body.clientWidth) / 2 + "px";
+                        }
+                      };
+                  </script>
+                
+                  
+                    <div class="item">
+                  
+                    <img id="carousel-img2" src="/css/images/sample2.png">
+                  </div>
+
+                  <!-- 自适应大图 -->
+                  <script>
+                      var img2 = new Image();
+                      var imageTag2 = document.getElementById("carousel-img2");
+                      img2.src = imageTag2.src;
+                      img2.onload=function(){
+                        if (img2.width / img2.height <= document.body.clientWidth / document.body.clientHeight) {
+                          imageTag2.style.width = document.body.clientWidth + "px";
+                        } else {
+                          imageTag2.style.height = document.body.clientHeight + "px";
+                          imageTag2.style.marginLeft = -(document.body.clientHeight * img2.width / img2.height - document.body.clientWidth) / 2 + "px";
                         }
                       };
                   </script>
@@ -192,8 +213,8 @@
         
           <div class="homelogoback"  style="border: 1px solid #404040;" >
             <h1><a href="#content" id="logo">Duck Ridge</a></h1>
-            <h3>Just Make Games</h3>
-            <h5>Todd Hwang</h5>
+            <h3>Make Games And Some Sorts</h3>
+            <h5>Todd Huang</h5>
             <!-- <p><a href="https://github.com/iTimeTraveler" target="_blank">Github</a></p> -->
           </div>
         
@@ -373,7 +394,8 @@ This behavior tree can actually be broke down into 3 parts...
     <div class="article-entry" itemprop="articleBody">
       
         <p class="article-excerpt-content">
-          The Structure of Nodes.Long long ago, there is a ancient empire located on the far oriental land named The Great Ceramide.Back to the good old day, people there follow a strict confucianism-like hierarchy tradition which means the members who are ...
+          The Structure of Nodes.Nodes there follow a strict confucianism-like hierarchy tradition which means the members who are in a upper position can dominate the one in a lower position.
+This cascade system allow elder nodes dominate younger nodes eas...
         </p>
         <p class="article-more-link">
           <a href="/2023/04/15/Reach-Node/#more">Read More</a>
@@ -628,7 +650,7 @@ Beer and Me in GermanyThe great thing is that as an untypical Asian, I am not al
 	      <p id="copyRightEn">Copyright &copy; 2019 - 2024 Duck Ridge All Rights Reserved.</p>
 	      
 	      
-  		   	<p id="copyRightCn">Todd Hwang hold copyright</p>
+  		   	<p id="copyRightCn">Todd Huang hold copyright</p>
   		   
 		</div>
 
@@ -772,7 +794,7 @@ Beer and Me in GermanyThe great thing is that as an untypical Asian, I am not al
             Duck Ridge
           </div>
           <div class="panel-body">
-            Copyright © 2024 Todd Hwang All Rights Reserved.
+            Copyright © 2024 Todd Huang All Rights Reserved.
           </div>
         </div>
       </div>
