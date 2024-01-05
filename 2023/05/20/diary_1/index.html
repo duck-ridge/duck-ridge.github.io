@@ -9,15 +9,15 @@
   
   
   
-  <meta name="description" content="我不明白为什么加一点小小的功能都要这么麻烦。想加一点功能不知加在哪里合适，亦不知加在哪个function下合适，并非理想状态下的样子。我特别能理解Karen抓着几个敷衍了事的蠢货喊“Redo！”。本来也只是个熟悉的过程，这么做真是不人道的。 上个月我一直在纠结 enemy是使用rigid body好还是kinematic body好，最后选择了rigid body，基于kinematic body">
+  <meta name="description" content="我不明白为什么加一点小小的功能都要这么麻烦。想加一点功能不知加在哪里合适，亦不知加在哪个function下合适，并非理想状态下的样子。 上个月我一直在纠结 enemy是使用rigid body好还是kinematic body好，最后选择了rigid body，基于kinematic body重新写了rigid body。克服了不能使用move_and_slide 与 move_and_colli">
 <meta property="og:type" content="article">
 <meta property="og:title" content="diary">
 <meta property="og:url" content="http://duck-ridge.github.io/2023/05/20/diary_1/index.html">
 <meta property="og:site_name" content="Duck Ridge">
-<meta property="og:description" content="我不明白为什么加一点小小的功能都要这么麻烦。想加一点功能不知加在哪里合适，亦不知加在哪个function下合适，并非理想状态下的样子。我特别能理解Karen抓着几个敷衍了事的蠢货喊“Redo！”。本来也只是个熟悉的过程，这么做真是不人道的。 上个月我一直在纠结 enemy是使用rigid body好还是kinematic body好，最后选择了rigid body，基于kinematic body">
+<meta property="og:description" content="我不明白为什么加一点小小的功能都要这么麻烦。想加一点功能不知加在哪里合适，亦不知加在哪个function下合适，并非理想状态下的样子。 上个月我一直在纠结 enemy是使用rigid body好还是kinematic body好，最后选择了rigid body，基于kinematic body重新写了rigid body。克服了不能使用move_and_slide 与 move_and_colli">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-20T10:16:34.000Z">
-<meta property="article:modified_time" content="2023-12-26T15:22:07.380Z">
+<meta property="article:modified_time" content="2024-01-05T10:19:26.540Z">
 <meta property="article:author" content="Todd Hwang">
 <meta name="twitter:card" content="summary">
   
@@ -158,9 +158,9 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我不明白为什么加一点小小的功能都要这么麻烦。想加一点功能不知加在哪里合适，亦不知加在哪个function下合适，并非理想状态下的样子。我特别能理解Karen抓着几个敷衍了事的蠢货喊“Redo！”。本来也只是个熟悉的过程，这么做真是不人道的。</p>
+        <p>我不明白为什么加一点小小的功能都要这么麻烦。想加一点功能不知加在哪里合适，亦不知加在哪个function下合适，并非理想状态下的样子。</p>
 <p>上个月我一直在纠结 enemy是使用rigid body好还是kinematic body好，最后选择了rigid body，基于kinematic body重新写了rigid body。克服了不能使用move_and_slide 与 move_and_collide，最后我成功让它动起来了！然而事到如今我又忘了当初为何要选择rigid body，所以我又浪费了一个下午感受kinematic body版本的enemy对子弹涉及判定的不敏感。</p>
-<p>这时候第二个问题来了，在制作rigid body时因为不能使用愚蠢的该死的move_and_slide 与 move_and_collide我不得不使它的移动独立于delta。这就造成了今天当我试图调整Engine.time_scale时enemy不会受其影响。当然这下可终于被我改变了。我用120*delta代替了2这个hard coding。</p>
+<p>这时候第二个问题来了，在制作rigid body时因为不能使用的move_and_slide 与 move_and_collide我不得不使它的移动独立于delta。这就造成了今天当我试图调整Engine.time_scale时enemy不会受其影响。当然这下可终于被我改变了。我用120*delta代替了2这个hard coding。</p>
 <p>好消息，本重度拖延症终于把我想了两个月的SloGun做进了Main Scene里了，但终究还是这么做了</p>
 
       
@@ -220,7 +220,7 @@
   <div class="container">
       	<div class="row">
 	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
-	      <p id="copyRightEn">Copyright &copy; 2019 - 2023 Duck Ridge All Rights Reserved.</p>
+	      <p id="copyRightEn">Copyright &copy; 2019 - 2024 Duck Ridge All Rights Reserved.</p>
 	      
 	      
   		   	<p id="copyRightCn">Todd Hwang hold copyright</p>
@@ -367,7 +367,7 @@
             Duck Ridge
           </div>
           <div class="panel-body">
-            Copyright © 2023 Todd Hwang All Rights Reserved.
+            Copyright © 2024 Todd Hwang All Rights Reserved.
           </div>
         </div>
       </div>
