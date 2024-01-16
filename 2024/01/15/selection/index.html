@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>proceduraltile | Duck Ridge</title>
+  <title>selection | Duck Ridge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta name="description" content="Frankly speaking, I’m not good at using setget and tool script in editor.According to my superficial acquaintance knowledge. Setget function is affiliate to an appointed variable.Whenever it got modif">
+  <meta name="description" content="This is a tech note about how to create an RTS-like selection box in Godot 4.2 Actually, it is been a while since Godot 4 released. There are some reasons stoped me to try it.  I was developing my gam">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ProceduralTile">
-<meta property="og:url" content="http://duck-ridge.github.io/2023/11/18/ProceduralTile/index.html">
+<meta property="og:title" content="selection">
+<meta property="og:url" content="http://duck-ridge.github.io/2024/01/15/selection/index.html">
 <meta property="og:site_name" content="Duck Ridge">
-<meta property="og:description" content="Frankly speaking, I’m not good at using setget and tool script in editor.According to my superficial acquaintance knowledge. Setget function is affiliate to an appointed variable.Whenever it got modif">
+<meta property="og:description" content="This is a tech note about how to create an RTS-like selection box in Godot 4.2 Actually, it is been a while since Godot 4 released. There are some reasons stoped me to try it.  I was developing my gam">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-11-18T03:40:56.000Z">
-<meta property="article:modified_time" content="2023-11-18T10:56:01.512Z">
+<meta property="article:published_time" content="2024-01-15T09:05:33.000Z">
+<meta property="article:modified_time" content="2024-01-15T17:58:44.228Z">
 <meta property="article:author" content="Todd Huang">
 <meta name="twitter:card" content="summary">
   
@@ -131,7 +131,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-ProceduralTile" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-selection" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -139,7 +139,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      ProceduralTile
+      selection
     </h1>
   
 
@@ -147,8 +147,8 @@
     
     <div class="article-meta">
       
-	<a href="/2023/11/18/ProceduralTile/" class="article-date">
-	  <time datetime="2023-11-18T03:40:56.000Z" itemprop="datePublished">2023-11-18</time>
+	<a href="/2024/01/15/selection/" class="article-date">
+	  <time datetime="2024-01-15T09:05:33.000Z" itemprop="datePublished">2024-01-15</time>
 	</a>
 
       
@@ -158,10 +158,28 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Frankly speaking, I’m not good at using setget and tool script in editor.<br>According to my superficial acquaintance knowledge. Setget function is affiliate to an appointed variable.<br>Whenever it got modified, the following function will changed by variable. That’s why such a function has to acquire a parameter.<br>In terms of tool script, it is a specific type of script which can execute in the editor mode.</p>
-<p>This is a ProceduralTile practice perfectly review these functions.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">tool</span><br><span class="line">extends TileMap</span><br><span class="line"></span><br><span class="line">export(bool) var lock_pattern = false</span><br><span class="line">export(int) var random_int = 0 setget tilemapRandomization</span><br><span class="line"></span><br><span class="line">func tilemapRandomization(random_input: int):</span><br><span class="line">	if lock_pattern:</span><br><span class="line">		return</span><br><span class="line"></span><br><span class="line">	random_int = random_input</span><br><span class="line">	var rng = RandomNumberGenerator.new()</span><br><span class="line">	rng.randomize()</span><br><span class="line"></span><br><span class="line">	if Engine.is_editor_hint():</span><br><span class="line">		for cell_position in get_used_cells():</span><br><span class="line">			var num : int = 0</span><br><span class="line">			if random_int != 0:</span><br><span class="line">				num = rng.randi_range(0, 3)</span><br><span class="line">			set_cellv(cell_position, num)</span><br></pre></td></tr></table></figure>
-<p>set “Engine.is_editor_hint()” is very important. It is a way to tell the status and if the script can be executed.</p>
+        <p>This is a tech note about how to create an RTS-like selection box in Godot 4.2</p>
+<p>Actually, it is been a while since Godot 4 released. There are some reasons stoped me to try it.</p>
+<ol>
+<li>I was developing my game Effluent in 3.5 already and numerous rules and functions changed.</li>
+<li>New Engines always have some inherited problems.</li>
+</ol>
+<p>Initially, I decide to try C#. However, when I trying to make it quick, the easy use of GDscript always make me stay.</p>
+<p>I am working on selection these days and it looks OK.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">extends ColorRect</span><br><span class="line"></span><br><span class="line">var is_dragging :bool = false</span><br><span class="line">var drag_start_pos : Vector2</span><br><span class="line">var drag_end_pos : Vector2</span><br><span class="line"></span><br><span class="line">func _input(event):</span><br><span class="line">	if event is InputEventMouseButton:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		if event.button_index == 1 and event.is_pressed():</span><br><span class="line">			if is_dragging != true:</span><br><span class="line">				is_dragging = true</span><br><span class="line">				drag_start_pos = get_global_mouse_position()</span><br><span class="line">				$&quot;.&quot;.global_position = drag_start_pos</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		elif event.is_pressed() == false:</span><br><span class="line">			if is_dragging == true:</span><br><span class="line">				is_dragging = false</span><br><span class="line">				drag_end_pos = get_global_mouse_position()</span><br><span class="line">				self.hide()</span><br><span class="line"></span><br><span class="line">	if event is InputEventMouseMotion:</span><br><span class="line">		if is_dragging == true:</span><br><span class="line">			self.show()</span><br><span class="line">			_update()</span><br></pre></td></tr></table></figure>
+<p>I will first introduce these variable<br>is_dragging: if player entering a selection mode<br>drag_start_pos: the start position of ColorRect<br>drag_end_pos: the end position of ColorRect</p>
+<p>Logic of drag selection Rect<br>Set is_dragging true when pressed LMB.<br>The “if is_dragging !&#x3D; true:” can save some energy, in case of repeated update drag_start_pos</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">func _update():</span><br><span class="line">	print(str(drag_start_pos) + &quot; &quot; + str(drag_end_pos))</span><br><span class="line"></span><br><span class="line">	#snapped in a 32 * 32 grid</span><br><span class="line">	if get_global_mouse_position().x &lt; drag_start_pos.x:</span><br><span class="line">		scale.x = -1</span><br><span class="line">	elif get_global_mouse_position().x &gt; drag_start_pos.x:</span><br><span class="line">		scale.x = 1</span><br><span class="line"></span><br><span class="line">	if get_global_mouse_position().y &lt; drag_start_pos.y:</span><br><span class="line">		scale.y = -1</span><br><span class="line">	elif get_global_mouse_position().y &gt; drag_start_pos.y:</span><br><span class="line">		scale.y = 1</span><br><span class="line"></span><br><span class="line">	#size = Vector2(snappedi(get_global_mouse_position().x - drag_start_pos.x, 32) * scale.x, snappedi(get_global_mouse_position().y - drag_start_pos.y, 32) * scale.y)</span><br><span class="line">	size = (get_global_mouse_position() - drag_start_pos) * scale</span><br></pre></td></tr></table></figure>
+
+<p>Update the mouse position all the time<br>when the mouse position is on the Fourth Quadrant relative to the drag_start_pos. Set the scale negative.</p>
+<p>TBH, this code chuck is quite redundant, I do some improvement to it</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scale = sign(get_global_mouse_position() - drag_start_pos) * Vector2.ONE</span><br><span class="line">size = (get_global_mouse_position() - drag_start_pos) * scale</span><br></pre></td></tr></table></figure>
+
+
+<p>When press ended we will know which points are in the rect selected.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func _press_ended():</span><br><span class="line">	var node_to_get = get_tree().get_nodes_in_group(&quot;Selectable&quot;)</span><br><span class="line">	var node_in_rect = []</span><br><span class="line">	var x = []</span><br><span class="line">	if node_to_get != null:</span><br><span class="line">		for node in node_to_get:</span><br><span class="line">			if get_global_rect().has_point(node.global_position):</span><br><span class="line">				node_in_rect.append(node)</span><br><span class="line">				node.scale = Vector2(0.5, 0.5)</span><br><span class="line"></span><br><span class="line">	x = arrayDifference(node_to_get, node_in_rect)</span><br><span class="line">	for i in x:</span><br><span class="line">		i.scale = Vector2.ONE</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func arrayDifference(largerArray, smallerArray):</span><br><span class="line">	var only_in_arr1 = []</span><br><span class="line">	for v in largerArray:</span><br><span class="line">		if not (v in smallerArray):</span><br><span class="line">			only_in_arr1.append(v)</span><br><span class="line">	return only_in_arr1</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -179,19 +197,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2024/01/10/UppsalaGameDesign/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          UppsalaGameDesign
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/11/16/shader-blaster/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2024/01/10/UppsalaGameDesign/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">shader-blaster</div>
+      <div class="article-nav-title">UppsalaGameDesign</div>
     </a>
   
 </nav>
