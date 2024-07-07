@@ -19,7 +19,7 @@
 <meta property="og:description" content="I position myself as a game&#x2F;level designer with a C#&#x2F;python skillset that is capable of finishing programs independently. Given the similarity of GDscript for Godot, although I am not famili">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-03-30T13:00:38.000Z">
-<meta property="article:modified_time" content="2024-03-31T04:34:14.148Z">
+<meta property="article:modified_time" content="2024-04-06T10:02:48.125Z">
 <meta property="article:author" content="Todd Huang">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
@@ -176,7 +176,7 @@
 <p>Given an integer x, return true if x is a palindrome, and false otherwise.</p>
 </blockquote>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public bool IsPalindrome(int x) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public bool IsPalindrome(int x) &#123;</span><br><span class="line"></span><br><span class="line">    if (x&lt; 0) return false;</span><br><span class="line"></span><br><span class="line">    int reverse = 0;</span><br><span class="line">    int temp = x;</span><br><span class="line"></span><br><span class="line">    while (temp != 0)</span><br><span class="line">    &#123;</span><br><span class="line">      int remainder = temp % 10;</span><br><span class="line">      reverse = reverse * 10 + remainder;</span><br><span class="line">      temp /= 10;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (x == reverse) return true;</span><br><span class="line">    else return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>

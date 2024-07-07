@@ -3,22 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>uppsalagamedesign | Duck Ridge</title>
+  <title>behavior-tree | Duck Ridge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="GodotVFX" />
   
   
   
-  <meta name="description" content="Dear Admission team of University of Uppsala： Hej! Since you are reading this post, I assume you went through my portfolio and decide to take a peek about this applicant. From my perspective, to know">
+  
+  <meta name="description" content="Behavior Tree Learning DiaryLearn BeehaviorTree in Godot?This article is about tech sharing and it also the standard writing template for my new series: the forging of Random Monster（暂）. This is shade">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UppsalaGameDesign">
-<meta property="og:url" content="http://duck-ridge.github.io/2024/01/10/UppsalaGameDesign/index.html">
+<meta property="og:title" content="Behavior-Tree">
+<meta property="og:url" content="http://duck-ridge.github.io/20243/04/15/VFX_balatro/index.html">
 <meta property="og:site_name" content="Duck Ridge">
-<meta property="og:description" content="Dear Admission team of University of Uppsala： Hej! Since you are reading this post, I assume you went through my portfolio and decide to take a peek about this applicant. From my perspective, to know">
+<meta property="og:description" content="Behavior Tree Learning DiaryLearn BeehaviorTree in Godot?This article is about tech sharing and it also the standard writing template for my new series: the forging of Random Monster（暂）. This is shade">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-01-10T14:24:23.000Z">
-<meta property="article:modified_time" content="2024-01-14T15:22:02.219Z">
+<meta property="article:published_time" content="+020243-04-15T12:22:29.000Z">
+<meta property="article:modified_time" content="2024-05-01T13:45:34.056Z">
 <meta property="article:author" content="Todd Huang">
+<meta property="article:tag" content="Godot">
+<meta property="article:tag" content="VFX">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Duck Ridge" type="application/atom+xml">
@@ -131,7 +135,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-UppsalaGameDesign" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-VFX_balatro" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -139,7 +143,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      UppsalaGameDesign
+      Behavior-Tree
     </h1>
   
 
@@ -147,8 +151,8 @@
     
     <div class="article-meta">
       
-	<a href="/2024/01/10/UppsalaGameDesign/" class="article-date">
-	  <time datetime="2024-01-10T14:24:23.000Z" itemprop="datePublished">2024-01-10</time>
+	<a href="/20243/04/15/VFX_balatro/" class="article-date">
+	  <time datetime="+020243-04-15T12:22:29.000Z" itemprop="datePublished">20243-04-15</time>
 	</a>
 
       
@@ -158,16 +162,28 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Dear Admission team of University of Uppsala：</p>
-<p>Hej! Since you are reading this post, I assume you went through my portfolio and decide to take a peek about this applicant.</p>
-<p>From my perspective, to know wether a applicant suitable for a project, one page statement of purpose is not enough. Therefore I would like to explain more about why I think I am the one should join here.</p>
-<ul>
-<li><p>I love game industry.<br>People love games of course. But many don’t figure out if they ever enjoy game industry.<br>From programming to art, to psychology all behind are involved.<br>As a new comer, I spent a lot of time on expand my skillset like try to familiar with different game genres. I am not sure what it is like in Europe, but game making is a rather grueling job in East Asia. That is why I studied these skills and control the pace by myself which can greatly protect my passion. I am also very proud to say I still insist in this field after one year full time development and never burnout.</p>
+        <h1 id="Behavior-Tree-Learning-Diary"><a href="#Behavior-Tree-Learning-Diary" class="headerlink" title="Behavior Tree Learning Diary"></a>Behavior Tree Learning Diary</h1><h2 id="Learn-BeehaviorTree-in-Godot"><a href="#Learn-BeehaviorTree-in-Godot" class="headerlink" title="Learn BeehaviorTree in Godot?"></a>Learn BeehaviorTree in Godot?</h2><p>This article is about tech sharing and it also the standard writing template for my new series: the forging of Random Monster（暂）.</p>
+<p>This is shader</p>
+<p>Shader pseudo-3D card effect</p>
+<p>The node of the card show as below:<br>Card (Button)<br>  Shadow (TextureRect)<br>  CardTexture (TextureRect<br>  DestroyArea(Area2D)<br>    CollisionShape2D</p>
+<ol>
+<li><p>Deploy<br>SubViewPortContainer -&gt; Material -&gt; NewShaderMaterial -&gt; Load “fake3D.gdshader”<br>Change names</p>
 </li>
-<li><p>Sverige är häftig, eller hur?<br>I know this country from my friends who ever traveled or studied there. People are chill and enjoy their slow life which is completely different from where I grow up and that is attractive to person like me who suffered from my anxiety for many years:)</p>
+<li><p>Setting<br>Card<br>Texture: img<br>Expend Mode: ignore size<br>Size: 152, 207</p>
 </li>
-</ul>
-<p>I plan to dive deeper to this country, thus I study Swedish in the app Duolingo. Not bad, I keep streak for 90 days! Maybe I can order coffee in the airport when I first come to this country.</p>
+</ol>
+<p>Card_Shadow<br>set as above<br>set color modulate make it transparent</p>
+<ol start="3">
+<li><p>Connect Shader parameter to “Card” node GDscript</p>
+</li>
+<li><p>Connect Card signals<br>  GUI input<br>  _on_mouse_entered<br>  _on_mouse_exited</p>
+</li>
+</ol>
+<p>fake3D effect</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">shader_type canvas_item;</span><br><span class="line"></span><br><span class="line">uniform vec2 rect_size;</span><br><span class="line"></span><br><span class="line">// Camera FOV</span><br><span class="line">uniform float fov : hint_range(1, 179) = 90;</span><br><span class="line">uniform bool cull_back = true;</span><br><span class="line">uniform float y_rot : hint_range(-360.0, 360.0) = 0.0;</span><br><span class="line">uniform float x_rot : hint_range(-360.0, 360.0) = 0.0;</span><br><span class="line">// At 0, the image retains its size when unrotated.</span><br><span class="line">// At 1, the image is resized so that it can do a full</span><br><span class="line">// rotation without clipping inside its rect.</span><br><span class="line">uniform float inset : hint_range(0, 1) = 0.0;</span><br><span class="line">// Consider changing this to a uniform and changing it from code</span><br><span class="line"></span><br><span class="line">varying flat vec2 o;</span><br><span class="line">varying vec3 p;</span><br><span class="line"></span><br><span class="line">// Creates rotation matrix</span><br><span class="line">void vertex()&#123;</span><br><span class="line">	float sin_b = sin(y_rot / 180.0 * PI);</span><br><span class="line">	float cos_b = cos(y_rot / 180.0 * PI);</span><br><span class="line">	float sin_c = sin(x_rot / 180.0 * PI);</span><br><span class="line">	float cos_c = cos(x_rot / 180.0 * PI);</span><br><span class="line"></span><br><span class="line">	mat3 inv_rot_mat;</span><br><span class="line">	inv_rot_mat[0][0] = cos_b;</span><br><span class="line">	inv_rot_mat[0][1] = 0.0;</span><br><span class="line">	inv_rot_mat[0][2] = -sin_b;</span><br><span class="line"></span><br><span class="line">	inv_rot_mat[1][0] = sin_b * sin_c;</span><br><span class="line">	inv_rot_mat[1][1] = cos_c;</span><br><span class="line">	inv_rot_mat[1][2] = cos_b * sin_c;</span><br><span class="line"></span><br><span class="line">	inv_rot_mat[2][0] = sin_b * cos_c;</span><br><span class="line">	inv_rot_mat[2][1] = -sin_c;</span><br><span class="line">	inv_rot_mat[2][2] = cos_b * cos_c;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	float t = tan(fov / 360.0 * PI);</span><br><span class="line">	p = inv_rot_mat * vec3((UV - 0.5), 0.5 / t);</span><br><span class="line">	float v = (0.5 / t) + 0.5;</span><br><span class="line">	p.xy *= v * inv_rot_mat[2].z;</span><br><span class="line">	o = v * inv_rot_mat[2].xy;</span><br><span class="line"></span><br><span class="line">	// to (rect_size is a uniform):</span><br><span class="line">	VERTEX += (UV - 0.5) * rect_size * t * (1.0 - inset);</span><br><span class="line"></span><br><span class="line">//	VERTEX += (UV - 0.5) / TEXTURE_PIXEL_SIZE * t * (1.0 - inset);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void fragment()&#123;</span><br><span class="line">	if (cull_back &amp;&amp; p.z &lt;= 0.0) discard;</span><br><span class="line">	vec2 uv = (p.xy / p.z).xy - o;</span><br><span class="line">    COLOR = texture(TEXTURE, uv + 0.5);</span><br><span class="line">	COLOR.a *= step(max(abs(uv.x), abs(uv.y)), 0.5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>.gd -&gt; lerp_val_x -&gt; rot_x -&gt; .gdshader -&gt; x_rot</p>
 
       
     </div>
@@ -177,6 +193,8 @@
       
       
         
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Godot/" rel="tag">Godot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VFX/" rel="tag">VFX</a></li></ul>
+
       
 
     </footer>
@@ -185,19 +203,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2024/01/15/selection/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          selection
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/11/18/ProceduralTile/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2024/05/29/FSM/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">ProceduralTile</div>
+      <div class="article-nav-title">FSM</div>
     </a>
   
 </nav>
@@ -211,7 +220,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav">None</ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Behavior-Tree-Learning-Diary"><span class="nav-number">1.</span> <span class="nav-text">Behavior Tree Learning Diary</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Learn-BeehaviorTree-in-Godot"><span class="nav-number">1.1.</span> <span class="nav-text">Learn BeehaviorTree in Godot?</span></a></li></ol></li></ol>
     
     </div>
   </aside>
