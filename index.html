@@ -261,7 +261,7 @@
         
           <section id="main" style="float:none;">
   
-    <article id="post-new-begining"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-callable"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -269,7 +269,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2024/07/07/new-begining/">new-begining</a>
+      <a class="article-title" href="/2024/08/13/callable/">callable</a>
     </h1>
   
 
@@ -277,8 +277,8 @@
     
     <div class="article-meta">
       
-	<a href="/2024/07/07/new-begining/" class="article-date">
-	  <time datetime="2024-07-07T07:17:25.000Z" itemprop="datePublished">2024-07-07</time>
+	<a href="/2024/08/13/callable/" class="article-date">
+	  <time datetime="2024-08-13T12:56:47.000Z" itemprop="datePublished">2024-08-13</time>
 	</a>
 
       
@@ -289,10 +289,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p class="article-excerpt-content">
-          Recently I have been working on a very abstract 2D game but have not figured out the name yet. Meanwhile, I am busy with a new beginning in Gotland, Sweden. I was informed people out there are not so friendly, but the good news is a big billboard ...
+          最近在适应Godot4，有很多东西都发生了变化，其中signal&#x2F;connect也换成一个很新的格式新的信号连接格式为 connect(signal_name, callable, flags)
+Callable 是一个新的概念，用于封装一个可以被调用的方法或函数。你可以将 Callable 看作是一个方法的“指针”或引用，可以在以后调用它。使用 Callable 的主要目的是在信号连接和回调中提供更灵活和清晰的方式。
+1var my_callable = Callable(se...
         </p>
         <p class="article-more-link">
-          <a href="/2024/07/07/new-begining/#more">Read More</a>
+          <a href="/2024/08/13/callable/#more">Read More</a>
         </p>
       
     </div>
@@ -679,61 +681,6 @@ fragment的Colo...
 
 
   
-    <article id="post-sloma_dialog_note"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2023/10/26/sloma_dialog_note/">sloma_dialog_note</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2023/10/26/sloma_dialog_note/" class="article-date">
-	  <time datetime="2023-10-26T07:17:48.000Z" itemprop="datePublished">2023-10-26</time>
-	</a>
-
-      
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          It just a note
-busBuzz Hey Frank 这里是 Konishi，你听的到吗（松开空格，重新按下可以刷新对话）
-我听着呢，你说吧
-地下四层是个适合新手的地方，而你的主要任务是把蒸汽阀门关上沿着排水道走，你左手边会有个狭窄的维修通道那里有三个房间，每个房间都一个控制阀拧紧每个房间失控的阀门，这样水位就会下去然后回到电梯口，电梯会将你带回地面很简单吧
-听起来还行
-但我们昨天派的人失踪了因此我有理由相信第四层可能已经被来自更加深处的变异生物侵入了我们已经派出了两位经验丰富...
-        </p>
-        <p class="article-more-link">
-          <a href="/2023/10/26/sloma_dialog_note/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
     <article id="post-save-load"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -767,6 +714,58 @@ I define my game “experimental”. To a large extent, it all about my game des
         </p>
         <p class="article-more-link">
           <a href="/2023/10/24/save-load/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-light-parallax"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2023/10/24/light-parallax/">light_parallax</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2023/10/24/light-parallax/" class="article-date">
+	  <time datetime="2023-10-24T05:32:21.000Z" itemprop="datePublished">2023-10-24</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          这是一个有挑战性的工作一般情况下你需要为整个画面盖上一个完全黑暗的 canvas module。然后在需要照明的地方使用 light2D 来模拟灯光效果对于那些阴影，你则需要加上相应的 occlusion 来阻挡光照
+然而当你碰到 parallax background 的时候事情复杂了起来。你会发现 parallax background 的sprite不受 canvas module 的黑暗所影响。parallax 是漂浮在黑暗图层上方的。
+解决思路如下，为 parallax back...
+        </p>
+        <p class="article-more-link">
+          <a href="/2023/10/24/light-parallax/#more">Read More</a>
         </p>
       
     </div>

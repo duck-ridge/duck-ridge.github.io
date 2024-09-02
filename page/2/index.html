@@ -261,58 +261,6 @@
         
           <section id="main" style="float:none;">
   
-    <article id="post-light-parallax"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2023/10/24/light-parallax/">light_parallax</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2023/10/24/light-parallax/" class="article-date">
-	  <time datetime="2023-10-24T05:32:21.000Z" itemprop="datePublished">2023-10-24</time>
-	</a>
-
-      
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          这是一个有挑战性的工作一般情况下你需要为整个画面盖上一个完全黑暗的 canvas module。然后在需要照明的地方使用 light2D 来模拟灯光效果对于那些阴影，你则需要加上相应的 occlusion 来阻挡光照
-然而当你碰到 parallax background 的时候事情复杂了起来。你会发现 parallax background 的sprite不受 canvas module 的黑暗所影响。parallax 是漂浮在黑暗图层上方的。
-解决思路如下，为 parallax back...
-        </p>
-        <p class="article-more-link">
-          <a href="/2023/10/24/light-parallax/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
     <article id="post-breathlight"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -589,66 +537,6 @@ Boss的攻击与间隔
 
 
   
-    <article id="post-diary_2"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2023/05/31/diary_2/">diary_2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2023/05/31/diary_2/" class="article-date">
-	  <time datetime="2023-05-31T12:49:02.000Z" itemprop="datePublished">2023-05-31</time>
-	</a>
-
-      
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          久违的更新一下游戏进度：过去的几周里
-
-给主角和敌人新添加了shader
-在level的script下制作了一个路径检测系统，确保摄像机的 zoom 会跟进最近一个敌人
-增加了子弹穿过某些item时候会产生的动画：模拟枪击纸张飞溅的效果
-按住射击：子弹连发的效果，包括音效
-敌人受击倒地，状态改为sleep，不会乱移动
-定义了什么是后面，后退的时候速度降低
-走路的anima Sprite
-
-
-        </p>
-        <p class="article-more-link">
-          <a href="/2023/05/31/diary_2/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
     <article id="post-rapid-fire"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -682,57 +570,6 @@ Boss的攻击与间隔
         </p>
         <p class="article-more-link">
           <a href="/2023/05/24/rapid-fire/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-diary_1"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2023/05/20/diary_1/">diary</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2023/05/20/diary_1/" class="article-date">
-	  <time datetime="2023-05-20T10:16:34.000Z" itemprop="datePublished">2023-05-20</time>
-	</a>
-
-      
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          我不明白为什么加一点小小的功能都要这么麻烦。想加一点功能不知加在哪里合适，亦不知加在哪个function下合适，并非理想状态下的样子。
-上个月我一直在纠结 enemy是使用rigid body好还是kinematic body好，最后选择了rigid body，基于kinematic body重新写了rigid body。克服了不能使用move_and_slide 与 move_and_collide，最后我成功让它动起来了！然而事到如今我又忘了当初为何要选择rigid body，所以我又...
-        </p>
-        <p class="article-more-link">
-          <a href="/2023/05/20/diary_1/#more">Read More</a>
         </p>
       
     </div>
@@ -805,6 +642,163 @@ camera的位置移动
         </p>
         <p class="article-more-link">
           <a href="/2023/05/07/camera/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Length_Path"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2023/05/06/Length_Path/">Length of Path</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2023/05/06/Length_Path/" class="article-date">
+	  <time datetime="2023-05-06T08:31:29.000Z" itemprop="datePublished">2023-05-06</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          Calculate the sum of distance when you using navigation2DHere is a solution to calculate the sum of distance when you using navigation2D.
+
+This solution is useful when you using Godot 3.5: if you are using latest version, be ware the Navigation2D ...
+        </p>
+        <p class="article-more-link">
+          <a href="/2023/05/06/Length_Path/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Path-finding"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2023/05/05/Path-finding/">Path-finding theory in navigaion2D</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2023/05/05/Path-finding/" class="article-date">
+	  <time datetime="2023-05-05T07:44:49.000Z" itemprop="datePublished">2023-05-05</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          Path finding is one of the most indispensable feature in game making. When you want some specific objects trace after another thing, you need it. There are two more functions make navigation system perfect.
+
+Dynamic routine update.
+Imaging a wolf ...
+        </p>
+        <p class="article-more-link">
+          <a href="/2023/05/05/Path-finding/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-BehavTree-In-RM"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2023/05/01/BehavTree-In-RM/">BehavTree in Random Monster</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2023/05/01/BehavTree-In-RM/" class="article-date">
+	  <time datetime="2023-05-01T05:23:35.000Z" itemprop="datePublished">2023-05-01</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          BeehaveThe AI concept behavior tree and the addon Beehave are introduced in the previous article. In this article, I will introduce the application of beehave.
+Behavior Tree For Enemy_Test
+This behavior tree can actually be broke down into 3 parts...
+        </p>
+        <p class="article-more-link">
+          <a href="/2023/05/01/BehavTree-In-RM/#more">Read More</a>
         </p>
       
     </div>
