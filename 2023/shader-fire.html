@@ -3,19 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>archives: 2025/1 | Duck Ridge</title>
+  <title>shader-fire | Duck Ridge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta name="description" content="Make Games And Some Sorts">
+  <meta name="description" content="&#x2F;&#x2F;tutorial here https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;CAyu18QPLIY 1234567891011121314151617181920212223242526272829303132333435363738shader_type canvas_item;&#x2F;&#x2F;avoid that VFX affect lightrender_mod">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Duck Ridge">
-<meta property="og:url" content="http://duck-ridge.github.io/archives/2025/01/index.html">
+<meta property="og:title" content="shader-fire">
+<meta property="og:url" content="http://duck-ridge.github.io/2023/shader-fire.html">
 <meta property="og:site_name" content="Duck Ridge">
-<meta property="og:description" content="Make Games And Some Sorts">
+<meta property="og:description" content="&#x2F;&#x2F;tutorial here https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;CAyu18QPLIY 1234567891011121314151617181920212223242526272829303132333435363738shader_type canvas_item;&#x2F;&#x2F;avoid that VFX affect lightrender_mod">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-09-13T14:07:12.000Z">
+<meta property="article:modified_time" content="2024-09-13T08:14:17.123Z">
 <meta property="article:author" content="Todd Huang">
 <meta name="twitter:card" content="summary">
   
@@ -131,124 +133,54 @@
             
       <div id="content" class="outer">
         
-          <section id="main">
-  <div class="archives-tags-wrap"><blockquote><span>There are 29 posts in total till now.</span></blockquote>
-
-
-<!-- 分页显示 -->
-
-	
-	
-		
-		
-		  
-		  
-		  <section class="archives-wrap">
-		    <div class="archive-year-wrap">
-		      <h1><a href="/archives/2025" class="archive-year">2025</a></h1>
-		    </div>
-		    <div class="archives">
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-	<a href="/2025/01/04/CsharpNote-1/" class="archive-article-date">
-	  <time datetime="2025-01-03T23:07:02.000Z" itemprop="datePublished">2025-01-04</time>
-	</a>
-
-      
+          <section id="main" style="float:none;"><article id="page-"  class="article article-type-page" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2025/01/04/CsharpNote-1/">CsharpNote-1</a>
+    <h1 class="thumb" class="article-title" itemprop="name">
+      shader-fire
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2023/shader-fire.html" class="article-date">
+	  <time datetime="2024-09-13T14:07:12.000Z" itemprop="datePublished">2024-09-13</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&#x2F;&#x2F;tutorial here <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=CAyu18QPLIY">https://www.youtube.com/watch?v=CAyu18QPLIY</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">shader_type canvas_item;</span><br><span class="line"></span><br><span class="line">//avoid that VFX affect light</span><br><span class="line">render_mode unshaded;</span><br><span class="line"></span><br><span class="line">uniform sampler2D noise_texture: hint_default_white, filter_nearest, repeat_enable;</span><br><span class="line">uniform sampler2D mask_texture: hint_default_white;</span><br><span class="line">uniform vec4 base_color: source_color = vec4(1.0, 0.75, 0.3, 1.0);</span><br><span class="line">uniform vec4 edge_color: source_color = vec4(1.0, 0.1, 0.0, 1.0);</span><br><span class="line">uniform float fire_alpha: hint_range(0.0, 1.0) = 1.0;</span><br><span class="line">uniform float fire_filter: hint_range(0.0, 3.0) = 0.2;</span><br><span class="line">uniform float fire_power: hint_range(1.0, 20.0) = 10.0;</span><br><span class="line">uniform vec2 fire_speed = vec2(0.0, 1.0);</span><br><span class="line"></span><br><span class="line">uniform float pixel_size : hint_range(1.0, 100.0) = 10.0;</span><br><span class="line"></span><br><span class="line">void fragment() &#123;</span><br><span class="line">	vec2 uv = UV;</span><br><span class="line"></span><br><span class="line">	// 像素化 UV 坐标</span><br><span class="line">	uv = floor(uv * pixel_size) / pixel_size;</span><br><span class="line"></span><br><span class="line">	//static: vec2 uv = UV;</span><br><span class="line">	uv = uv + TIME * fire_speed;</span><br><span class="line"></span><br><span class="line">	// using .r is because we using float only</span><br><span class="line">	float fire_noise = texture(noise_texture, uv).r;</span><br><span class="line"></span><br><span class="line">	//pixel adaptation</span><br><span class="line">	float mask = texture(mask_texture, uv).r;</span><br><span class="line"></span><br><span class="line">	//iterate 1 float noise = fire_filter + UV.y;</span><br><span class="line">	//iterate 2 float noise = fire_noise * (fire_filter + UV.y);</span><br><span class="line">	float noise = (fire_noise * (fire_filter + UV.y) - fire_filter) * UV.y * fire_power * mask;</span><br><span class="line"></span><br><span class="line">	vec4 fire_color = mix(edge_color, base_color, noise);</span><br><span class="line">	COLOR = vec4(fire_color.rgb * mask, fire_alpha * clamp(noise, 0.0, 1.0));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
   </div>
+  
+    
+  
 </article>
-	
-	
-		</div></section>
-	
 
-	<!-- 页数指示器 -->
-	
-
-
-
+<!-- Table of Contents -->
 
 </section>
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Addon/" rel="tag">Addon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Godot/" rel="tag">Godot</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Random-Monster/" rel="tag">Random Monster</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Widget/" rel="tag">Widget</a><span class="tag-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Addon/" style="font-size: 10px;">Addon</a> <a href="/tags/Godot/" style="font-size: 20px;">Godot</a> <a href="/tags/Random-Monster/" style="font-size: 15px;">Random Monster</a> <a href="/tags/Widget/" style="font-size: 15px;">Widget</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2025/01/04/CsharpNote-1/">CsharpNote-1</a>
-          </li>
-        
-          <li>
-            <a href="/2024/11/30/LANMultiplayer/">LANMultiplayer</a>
-          </li>
-        
-          <li>
-            <a href="/2024/09/13/shader-fire/">shader-fire</a>
-          </li>
-        
-          <li>
-            <a href="/2024/09/13/shader-rotation/">shader-rotation</a>
-          </li>
-        
-          <li>
-            <a href="/2024/08/13/callable/">callable</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
       
