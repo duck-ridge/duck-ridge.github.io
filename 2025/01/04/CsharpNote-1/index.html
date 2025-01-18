@@ -9,15 +9,15 @@
   
   
   
-  <meta name="description" content="using Godot;using System;using System.Text.RegularExpressions; public partial class player : CharacterBody2D{    public Vector2 direction;    public int speed &#x3D; 400;    public int gravity &#x3D;">
+  <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980using Godot;using System;using System.Text.Regula">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CsharpNote-1">
 <meta property="og:url" content="http://duck-ridge.github.io/2025/01/04/CsharpNote-1/index.html">
 <meta property="og:site_name" content="Duck Ridge">
-<meta property="og:description" content="using Godot;using System;using System.Text.RegularExpressions; public partial class player : CharacterBody2D{    public Vector2 direction;    public int speed &#x3D; 400;    public int gravity &#x3D;">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980using Godot;using System;using System.Text.Regula">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-01-03T23:07:02.000Z">
-<meta property="article:modified_time" content="2025-01-03T23:08:13.313Z">
+<meta property="article:modified_time" content="2025-01-06T23:31:23.835Z">
 <meta property="article:author" content="Todd Huang">
 <meta name="twitter:card" content="summary">
   
@@ -158,77 +158,15 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>using Godot;<br>using System;<br>using System.Text.RegularExpressions;</p>
-<p>public partial class player : CharacterBody2D<br>{<br>    public Vector2 direction;<br>    public int speed &#x3D; 400;<br>    public int gravity &#x3D; 980;<br>    public int jump_velocity &#x3D; -500;<br>    private bool allow_extra_jump &#x3D; true;</p>
-<pre><code>public override void _PhysicsProcess(double delta)
-&#123;
-    Vector2 velocity = Velocity;
-
-    if (Input.IsActionJustPressed(&quot;ui_up&quot;))
-    &#123;
-        if (IsOnFloor())
-        &#123;
-            velocity.Y = jump_velocity;
-        &#125;
-        else
-        &#123;
-            //dispensable statement &#39;switch&#39; is carried here just for education purpose.
-            //a if statement is encough to fix it
-            switch (allow_extra_jump)
-            &#123;
-                case false:
-                    return;
-            &#125;
-            velocity.Y = jump_velocity;
-            allow_extra_jump = false;
-        &#125;
-    &#125;
-
-    //gravity works only !IsOnFloor
-    if (!IsOnFloor())
-    &#123;
-        velocity.Y += gravity * (float)delta;
-        if (velocity.Y &gt; 3000)
-        &#123;
-            velocity.Y = 3000;
-        &#125;
-    &#125;
-    else
-    &#123;
-        allow_extra_jump = true;
-    &#125;
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">using Godot;</span><br><span class="line">using System;</span><br><span class="line">using System.Text.RegularExpressions;</span><br><span class="line"></span><br><span class="line">public partial class player : CharacterBody2D</span><br><span class="line">&#123;</span><br><span class="line">	public Vector2 direction;</span><br><span class="line">	public int speed = 400;</span><br><span class="line">	public int gravity = 980;</span><br><span class="line">	public int jump_velocity = -500;</span><br><span class="line">	private bool allow_extra_jump = true;</span><br><span class="line"></span><br><span class="line">    public override void _PhysicsProcess(double delta)</span><br><span class="line">    &#123;</span><br><span class="line">		Vector2 velocity = Velocity;</span><br><span class="line"></span><br><span class="line">		if (Input.IsActionJustPressed(&quot;ui_up&quot;))</span><br><span class="line">		&#123;</span><br><span class="line">			if (IsOnFloor())</span><br><span class="line">			&#123;</span><br><span class="line">				velocity.Y = jump_velocity;</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				//dispensable statement &#x27;switch&#x27; is carried here just for education purpose.</span><br><span class="line">				//a if statement is encough to fix it</span><br><span class="line">				switch (allow_extra_jump)</span><br><span class="line">				&#123;</span><br><span class="line">					case false:</span><br><span class="line">						return;</span><br><span class="line">				&#125;</span><br><span class="line">				velocity.Y = jump_velocity;</span><br><span class="line">				allow_extra_jump = false;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		//gravity works only !IsOnFloor</span><br><span class="line">		if (!IsOnFloor())</span><br><span class="line">		&#123;</span><br><span class="line">			velocity.Y += gravity * (float)delta;</span><br><span class="line">			if (velocity.Y &gt; 3000)</span><br><span class="line">			&#123;</span><br><span class="line">				velocity.Y = 3000;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			allow_extra_jump = true;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		//horizontal movement and friction</span><br><span class="line">		if (direction.X != 0)</span><br><span class="line">		&#123;</span><br><span class="line">			velocity.X = direction.X * speed;</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			velocity.X = Mathf.MoveToward(velocity.X, 0, speed);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		Velocity = velocity;</span><br><span class="line"></span><br><span class="line">		MoveAndSlide();</span><br><span class="line"></span><br><span class="line">        base._PhysicsProcess(delta);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public override void _Ready()</span><br><span class="line">    &#123;</span><br><span class="line">        base._Ready();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public override void _Input(InputEvent @event)</span><br><span class="line">    &#123;</span><br><span class="line">		direction.X = Input.GetActionStrength(&quot;ui_right&quot;) - Input.GetActionStrength(&quot;ui_left&quot;);</span><br><span class="line">		base._Input(@event);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-    //horizontal movement and friction
-    if (direction.X != 0)
-    &#123;
-        velocity.X = direction.X * speed;
-    &#125;
-    else
-    &#123;
-        velocity.X = Mathf.MoveToward(velocity.X, 0, speed);
-    &#125;
-
-    Velocity = velocity;
-
-    MoveAndSlide();
-
-    base._PhysicsProcess(delta);
-&#125;
-
-public override void _Ready()
-&#123;
-    base._Ready();
-&#125;
-
-public override void _Input(InputEvent @event)
-&#123;
-    direction.X = Input.GetActionStrength(&quot;ui_right&quot;) - Input.GetActionStrength(&quot;ui_left&quot;);
-    base._Input(@event);
-
-&#125;
-</code></pre>
-<p>}</p>
+<p>我快速回顾一下这个可以二段跳的2D CharacterBody2D的代码<br>首先分为_Input：简要的通过获取输入的力度来做一个基础的direction。<br>其次是physicsprocess，这里涉及到角色是否正好位于地面上</p>
+<p>假设位于地面：那负责允许二段跳的变量 allow_extra_jump 会设置成 true<br>并且自动向下的力gravity不会被触发。</p>
+<p>如果不位于地面：触发一个自动向下的力gravity<br>假设此时起跳则会查看allow_extra_jump是否允许<br>若允许二段跳则跳起后将 allow_extra_jump 设置成 false，反之return<br>值得注意的是出于教育目的，我特意将其allow_extra_jump设置为switch语句驱动。</p>
+<p>friction and acceleration<br>Godot3有的lerp，Godot4有MoveToward。<br>速度限制</p>
+<p>Dash<br>Dash 时取消限制移动</p>
+<p>我们的思路是创建一个 velocity 作为surrogate，最后把它的值给 Velocity<br>因为 Velocity 是一个结构体</p>
 
       
     </div>
