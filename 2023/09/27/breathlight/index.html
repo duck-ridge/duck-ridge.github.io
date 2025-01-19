@@ -9,15 +9,15 @@
   
   
   
-  <meta name="description" content="Recently i made a walkie talkie. TBH I am not sure that is the name of it.I think the indicate light which attached to the walkie talkie is quite static. 1234567var x_axis_sin: float &#x3D; 0func walkie_ta">
+  <meta name="description" content="Creating a Breathing Effect for a Walkie Talkie Light in Godot Engine Recently, I made a walkie-talkie for one of my projects. However, I noticed that the indicator light on the walkie-talkie felt qui">
 <meta property="og:type" content="article">
 <meta property="og:title" content="breathlight">
 <meta property="og:url" content="http://duck-ridge.github.io/2023/09/27/breathlight/index.html">
 <meta property="og:site_name" content="Duck Ridge">
-<meta property="og:description" content="Recently i made a walkie talkie. TBH I am not sure that is the name of it.I think the indicate light which attached to the walkie talkie is quite static. 1234567var x_axis_sin: float &#x3D; 0func walkie_ta">
+<meta property="og:description" content="Creating a Breathing Effect for a Walkie Talkie Light in Godot Engine Recently, I made a walkie-talkie for one of my projects. However, I noticed that the indicator light on the walkie-talkie felt qui">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-27T05:59:41.000Z">
-<meta property="article:modified_time" content="2023-09-27T06:37:57.429Z">
+<meta property="article:published_time" content="2023-09-27T11:59:41.000Z">
+<meta property="article:modified_time" content="2025-01-18T22:58:23.781Z">
 <meta property="article:author" content="Todd Huang">
 <meta name="twitter:card" content="summary">
   
@@ -148,7 +148,7 @@
     <div class="article-meta">
       
 	<a href="/2023/09/27/breathlight/" class="article-date">
-	  <time datetime="2023-09-27T05:59:41.000Z" itemprop="datePublished">2023-09-27</time>
+	  <time datetime="2023-09-27T11:59:41.000Z" itemprop="datePublished">2023-09-27</time>
 	</a>
 
       
@@ -158,10 +158,35 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Recently i made a walkie talkie. TBH I am not sure that is the name of it.<br>I think the indicate light which attached to the walkie talkie is quite static.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var x_axis_sin: float = 0</span><br><span class="line">func walkie_talkie_breath(increment):</span><br><span class="line">	x_axis_sin += increment</span><br><span class="line">	print(WT_FlashLight.self_modulate.a)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	WT_FlashLight.self_modulate.a = sin(3 * x_axis_sin) * 0.5 + 0.5</span><br></pre></td></tr></table></figure>
+        <p>Creating a Breathing Effect for a Walkie Talkie Light in Godot Engine</p>
+<p>Recently, I made a walkie-talkie for one of my projects. However, I noticed that the indicator light on the walkie-talkie felt quite static and lacked a dynamic feel. To address this, I implemented a “breathing” light effect, which creates a smooth pulsating glow. It is a very simple function but the process of solving it is  interesting.</p>
+<p><strong>The Problem</strong></p>
+<p>The walkie-talkie’s indicator light was simply an on&#x2F;off light with no variation. This static nature didn’t match the otherwise dynamic design of the device. Adding a breathing effect—a subtle, continuous fading in and out—would make it more visually appealing and alive.<br>I don’t want to leave the problem to art. Because I am the only one dealing with the entire game:)</p>
+<p><strong>Solution Overview</strong><br>The solution involves modifying the alpha channel of the self_modulate property of the indicator light sprite. By applying a sine wave function to the alpha value, we can create a smooth oscillation effect that mimics breathing.</p>
+<p><strong>The Script</strong></p>
+<p>Here’s the script I used to implement the breathing effect:</p>
+<p>var x_axis_sin: float &#x3D; 0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func walkie_talkie_breath(increment: float):</span><br><span class="line">    # Increment the sine wave&#x27;s x-axis</span><br><span class="line">    x_axis_sin += increment</span><br><span class="line"></span><br><span class="line">    # Calculate the new alpha value using a sine wave</span><br><span class="line">    WT_FlashLight.self_modulate.a = sin(3 * x_axis_sin) * 0.5 + 0.5</span><br><span class="line"></span><br><span class="line">    # Optional: Debug print to monitor alpha values</span><br><span class="line">    print(WT_FlashLight.self_modulate.a)</span><br></pre></td></tr></table></figure>
+<p>This function:</p>
+<p>Uses a variable x_axis_sin to track the progression of the sine wave.</p>
+<p>Modulates the alpha value of WT_FlashLight (the indicator light sprite).</p>
+<p>Uses the sine function to create a value oscillating between 0 and 1, ensuring a smooth fade in and fade out.</p>
+<p>Integration</p>
+<p>To integrate the breathing effect into the Godot scene, I placed the walkie_talkie_breath() function inside the _physics_process() function to ensure it updates regularly based on the frame time:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func _physics_process(delta: float):</span><br><span class="line">    # Link the breathing effect to frame updates</span><br><span class="line">    walkie_talkie_breath(delta)</span><br></pre></td></tr></table></figure>
 
-<p>Then implant it into the func _physical_process() and link it by time</p>
+<p>By passing delta (the frame time) as the increment, the breathing effect adjusts dynamically based on the game’s frame rate, ensuring consistent performance across devices.</p>
+<p><strong>Why It Works</strong></p>
+<p>The sine function generates a smooth wave pattern, which is perfect for creating natural-looking animations. By adjusting the multiplier (3 * x_axis_sin), you can control the breathing speed. The * 0.5 + 0.5 part ensures the sine wave’s output (ranging from -1 to 1) is normalized to 0 to 1, making it suitable for alpha values.</p>
+<p><strong>Enhancements and Customization</strong></p>
+<p>You can further enhance the effect by:</p>
+<p>Changing the Speed: Adjust the 3 * x_axis_sin multiplier to speed up or slow down the breathing effect.</p>
+<p>Adding Color Modulation: Extend the self_modulate property to include changes in color (e.g., pulsing from red to orange).</p>
+<p>Randomizing the Effect: Add slight randomization to the speed or amplitude to simulate a more organic feel.</p>
+<p>For example:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func walkie_talkie_breath(increment: float, intensity: float):</span><br><span class="line">    x_axis_sin += increment</span><br><span class="line">    WT_FlashLight.self_modulate.a = sin(3 * x_axis_sin) * (0.5 * intensity) + (0.5 * intensity)</span><br></pre></td></tr></table></figure>
+<p><strong>Conclusion</strong></p>
+<p>With just a few lines of code, we’ve transformed a static light into a dynamic breathing effect. This small addition makes the walkie-talkie feel more alive and engaging. Whether it’s for a walkie-talkie or any other device, this technique can be applied widely to enhance visual fidelity in your Godot projects.</p>
 
       
     </div>

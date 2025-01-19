@@ -6,27 +6,25 @@
   <title>behavior-tree | Duck Ridge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="GodotRandom MonsterAddon" />
+  <meta name="keywords" content="" />
   
   
   
   
   <meta name="description" content="Behavior Tree Learning DiaryLearn BeehaviorTree in Godot?This article is about tech sharing and it also the standard writing template for my new series: the forging of Random Monster（暂）. tip Random Mo">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Behavior-Tree">
-<meta property="og:url" content="http://duck-ridge.github.io/2023/02/19/Behavior-Tree/index.html">
+<meta property="og:url" content="http://duck-ridge.github.io/2023/Behavior-Tree.html">
 <meta property="og:site_name" content="Duck Ridge">
 <meta property="og:description" content="Behavior Tree Learning DiaryLearn BeehaviorTree in Godot?This article is about tech sharing and it also the standard writing template for my new series: the forging of Random Monster（暂）. tip Random Mo">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://duck-ridge.github.io/2023/02/19/Behavior-Tree/Behavior_Root.jpeg">
-<meta property="article:published_time" content="2023-02-19T12:22:29.000Z">
-<meta property="article:modified_time" content="2023-05-04T08:29:27.007Z">
+<meta property="article:published_time" content="2023-02-19T19:22:29.000Z">
+<meta property="article:modified_time" content="2025-01-18T22:48:35.670Z">
 <meta property="article:author" content="Todd Huang">
 <meta property="article:tag" content="Godot">
 <meta property="article:tag" content="Random Monster">
 <meta property="article:tag" content="Addon">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://duck-ridge.github.io/2023/02/19/Behavior-Tree/Behavior_Root.jpeg">
   
     <link rel="alternate" href="/atom.xml" title="Duck Ridge" type="application/atom+xml">
   
@@ -75,6 +73,8 @@
   
 
   
+    <link rel="stylesheet" href="/css/archive.css" >
+  
   
   
 
@@ -82,7 +82,7 @@
 
 
 
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <body>
 
 
   
@@ -105,7 +105,7 @@
             
               <a class="brand" style="
                  margin-top: 0px;"  
-                href="#" data-toggle="modal" data-target="#myModal" >
+                 >
                   <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.gif">
               </a>
             
@@ -138,7 +138,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-Behavior-Tree" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="page-"  class="article article-type-page" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -154,8 +154,8 @@
     
     <div class="article-meta">
       
-	<a href="/2023/02/19/Behavior-Tree/" class="article-date">
-	  <time datetime="2023-02-19T12:22:29.000Z" itemprop="datePublished">2023-02-19</time>
+	<a href="/2023/Behavior-Tree.html" class="article-date">
+	  <time datetime="2023-02-19T19:22:29.000Z" itemprop="datePublished">2023-02-19</time>
 	</a>
 
       
@@ -214,7 +214,7 @@
 <p>The Selector Star node is similar to the Selector, however, it will skip all previous child nodes that were executed prior, in case one of the children is currently in RUNNING state. A usecase for this is if you want to ensure that only one action is executed at a time, regardless of for long it runs.</p>
 </blockquote>
 <hr>
-<h2 id="BeehaviorTree-Example-Goblin-Villagers"><a href="#BeehaviorTree-Example-Goblin-Villagers" class="headerlink" title="BeehaviorTree Example - Goblin Villagers"></a>BeehaviorTree Example - Goblin Villagers</h2><p>This article is about tech sharing and it also the standard writing template for my new series: the forging of Random Monster（暂）.<br>Special thanks to bitbrain and the beehavior tutorial that he created makes me learn behavior tree in Godot nice and easy.<br>The example of behavior tree will be dissembled and demonstrated here:<br>In the goblin village there are 3 types of goblin villagers and they perform different tasks. They are <strong>Lumberjack</strong>,  <strong>Trader</strong>, <strong>Forester</strong>. All of goblins are inherited from “Villager” type (extends kinematicBody2D). “Villager” type including various animation, villager name and profession, speed etc.<br>The differences of their profession are defined by their behavior trees (extends BeehaveRoot)</p>
+<h2 id="BeehaviorTree-Example-Goblin-Villagers"><a href="#BeehaviorTree-Example-Goblin-Villagers" class="headerlink" title="BeehaviorTree Example - Goblin Villagers"></a>BeehaviorTree Example - Goblin Villagers</h2><p>Special thanks to bitbrain and the beehavior tutorial that he created makes me learn behavior tree in Godot nice and easy.<br>The example of behavior tree will be dissembled and demonstrated here:<br>In the goblin village there are 3 types of goblin villagers and they perform different tasks. They are <strong>Lumberjack</strong>,  <strong>Trader</strong>, <strong>Forester</strong>. All of goblins are inherited from “Villager” type (extends kinematicBody2D). “Villager” type including various animation, villager name and profession, speed etc.<br>The differences of their profession are defined by their behavior trees (extends BeehaveRoot)</p>
 <p><strong>tip profession of goblins</strong></p>
 <ul>
 <li>Lumberjack<ul>
@@ -236,7 +236,7 @@
 </blockquote>
 <p>The explanation of Lumberjack will start with SequenceStar Node: Chop Wood.<br>SequenceStar means the actions will be executed one by one.</p>
 <hr>
-<img src="/2023/02/19/Behavior-Tree/Behavior_Root.jpeg" class="" title="Behavior tree illustration for goblin villagers">
+
 
 <p><strong>tip Lumberjack</strong></p>
 <ul>
@@ -263,47 +263,15 @@
       
       
       
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Addon/" rel="tag">Addon</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Godot/" rel="tag">Godot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Random-Monster/" rel="tag">Random Monster</a></li></ul>
-
-      
 
     </footer>
   </div>
   
     
-<nav id="article-nav">
-  
-    <a href="/2023/03/02/Procedure-Map/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Procedure-Map
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2022/11/25/BrewDay/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">BrewDay</div>
-    </a>
-  
-</nav>
-
   
 </article>
 
 <!-- Table of Contents -->
-
-  <aside id="toc-sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Behavior-Tree-Learning-Diary"><span class="nav-number">1.</span> <span class="nav-text">Behavior Tree Learning Diary</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Learn-BeehaviorTree-in-Godot"><span class="nav-number">1.1.</span> <span class="nav-text">Learn BeehaviorTree in Godot?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nodes"><span class="nav-number">1.1.1.</span> <span class="nav-text">Nodes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BeehaviorTree-Example-Goblin-Villagers"><span class="nav-number">1.2.</span> <span class="nav-text">BeehaviorTree Example - Goblin Villagers</span></a></li></ol></li></ol>
-    
-    </div>
-  </aside>
 
 </section>
         
@@ -400,10 +368,6 @@
 
 
 
-  
-<script src="/js/dialog.js"></script>
-
-
 
 
 
@@ -479,8 +443,6 @@
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
-  
-    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 </body>
 </html>

@@ -3,19 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>archives: 2023/2 | Duck Ridge</title>
+  <title>import 3d model to godot 4.2 | Duck Ridge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta name="description" content="Make Games And Some Sorts">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Duck Ridge">
-<meta property="og:url" content="http://duck-ridge.github.io/archives/2023/02/index.html">
+  <meta name="description" content="Import 3D model to godot 4.2 一般而言模型有集中格式  fbx - Godot 一般支持。包含材质、贴图、灯光和摄像机数据。文件较大 gltf&#x2F;glb - Godot 全面支持。加载速度快，包括动画、材质和骨骼。 obj - Godot 一般支持。传统的 3D 模型格式，常用于静态模型。  Animation拖拽进godot后在import 的 advanc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Import 3D model to godot 4.2">
+<meta property="og:url" content="http://duck-ridge.github.io/2024/11/30/Import3Dmodel/index.html">
 <meta property="og:site_name" content="Duck Ridge">
-<meta property="og:description" content="Make Games And Some Sorts">
+<meta property="og:description" content="Import 3D model to godot 4.2 一般而言模型有集中格式  fbx - Godot 一般支持。包含材质、贴图、灯光和摄像机数据。文件较大 gltf&#x2F;glb - Godot 全面支持。加载速度快，包括动画、材质和骨骼。 obj - Godot 一般支持。传统的 3D 模型格式，常用于静态模型。  Animation拖拽进godot后在import 的 advanc">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-30T19:37:40.000Z">
+<meta property="article:modified_time" content="2025-01-19T13:12:39.296Z">
 <meta property="article:author" content="Todd Huang">
 <meta name="twitter:card" content="summary">
   
@@ -66,8 +68,6 @@
   
 
   
-    <link rel="stylesheet" href="/css/archive.css" >
-  
   
   
 
@@ -75,7 +75,7 @@
 
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   
@@ -98,7 +98,7 @@
             
               <a class="brand" style="
                  margin-top: 0px;"  
-                 >
+                href="#" data-toggle="modal" data-target="#myModal" >
                   <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.gif">
               </a>
             
@@ -131,124 +131,93 @@
             
       <div id="content" class="outer">
         
-          <section id="main">
-  <div class="archives-tags-wrap"><blockquote><span>There are 24 posts in total till now.</span></blockquote>
-
-
-<!-- 分页显示 -->
-
-	
-	
-		
-		
-		  
-		  
-		  <section class="archives-wrap">
-		    <div class="archive-year-wrap">
-		      <h1><a href="/archives/2023" class="archive-year">2023</a></h1>
-		    </div>
-		    <div class="archives">
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-	<a href="/2023/02/19/Behavior-Tree/" class="archive-article-date">
-	  <time datetime="2023-02-19T12:22:29.000Z" itemprop="datePublished">2023-02-19</time>
-	</a>
-
-      
+          <section id="main" style="float:none;"><article id="post-Import3Dmodel" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2023/02/19/Behavior-Tree/">Behavior-Tree</a>
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Import 3D model to godot 4.2
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2024/11/30/Import3Dmodel/" class="article-date">
+	  <time datetime="2024-11-30T19:37:40.000Z" itemprop="datePublished">2024-11-30</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Import 3D model to godot 4.2</p>
+<p>一般而言模型有集中格式</p>
+<ul>
+<li>fbx - Godot 一般支持。包含材质、贴图、灯光和摄像机数据。文件较大</li>
+<li>gltf&#x2F;glb - Godot 全面支持。加载速度快，包括动画、材质和骨骼。</li>
+<li>obj - Godot 一般支持。传统的 3D 模型格式，常用于静态模型。</li>
+</ul>
+<p>Animation<br>拖拽进godot后在import 的 advance 里可以更加详细地看清楚细节<br>并且在Root type中可以根据需求改变node（比如把角色模型的root type从node 3D改为charactor body3D）<br>同时也需要设定各种动画的loop mode，有些动画需要循环的诸如running和idle</p>
+<p>Collision<br>我们不需要一个个在godot里为物品创建collision shape，接上查看细节的步骤。<br>选中mesh，选中Generate-Physics，在shape type中就能改变。对于大多数模型，simple convex就行了。</p>
+<p>Child Node<br>一个复杂的模型可能包括很多不同的部分。右击GLB文件中选择 New inherited scene 就可以把这个复杂的模型以node的形式拆解。</p>
+<p>为mesh自动生成collisionshape<br>选中mesh node，在主视窗上部选中mesh，增加create trimesh static body</p>
+<p>改变颜色<br>方法 1：通过 Material Override 修改颜色<br>选中你的 MeshInstance3D 节点。<br>在 Inspector 面板 中找到 Material Override 属性。<br>点击右侧的 + 按钮，选择 StandardMaterial3D。<br>在新的材质设置中：<br>找到 Albedo（基色）部分。<br>修改 Color 为白色。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public override void _Ready()</span><br><span class="line">&#123;</span><br><span class="line">  _camera = GetNode&lt;Camera3D&gt;(&quot;Camera3D&quot;);</span><br><span class="line">  //该代码将鼠标模式设置为 Captured（捕获模式），目的是让鼠标指针隐藏并锁定在窗口内。</span><br><span class="line">  //这种模式常用于第一人称或第三人称视角的游戏，让玩家通过鼠标移动自由调整视角，而不会受到鼠标移出游戏窗口的限制。</span><br><span class="line">  Input.MouseMode = Input.MouseModeEnum.Captured;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Input.MouseModeEnum.Visible</p>
+<p>默认模式，鼠标指针可见并能自由移动。<br>鼠标可以移出窗口，不会影响应用程序。<br>常用于 UI 操作和非全屏应用。<br>Input.MouseModeEnum.Hidden</p>
+<p>鼠标指针隐藏，但仍然可以自由移动。<br>常用于需要鼠标功能但不希望显示光标的场景。<br>Input.MouseModeEnum.Captured</p>
+<p>鼠标指针被捕获（锁定在窗口内），并隐藏。<br>鼠标移动会产生相对坐标（InputEventMouseMotion.Relative），即鼠标移动的增量。<br>用途：第一人称射击、第三人称视角旋转、飞行模拟器等。<br>Input.MouseModeEnum.Confined</p>
+<p>鼠标指针可见，但限制在窗口范围内，不能移出窗口。<br>常用于策略游戏或其他需要保持鼠标在窗口范围内的场景。</p>
+<p>前情提要<br>我，三十二岁，失业<br>回到我衰败的家乡。一座资源枯竭型西北小县城。<br>每天昏天黑地地玩游戏打发时光，以免直面我惨淡的人生。与父母大吵一架后，我搬进了复兴大厦405.<br>年久失修月租700，图个清净。<br>邻居们阴恻恻的，也好，我正好不想见人。</p>
+<p>第一章<br>七月半，鬼门开。距离中元节还有两天。<br>这天傍晚，我正在客厅里看电视。突然之间跳闸了。【客厅】（被献祭了）<br>“怎么又跳闸了”<br>于是我转身去卧室拿手电筒。回头我见到一个尸体躺在沙发上，但不多时，消失了<br>我一定是太累了<br>我要去电井维修开电闸<br>（走廊）<br>（电井）蜥蜴跑动<br>维修成功<br>回房间的路上快到自己家的时候，电又没了。<br>你的房间门当着你的面关上了，砰地一声<br>玩家自己去探索前往邻居家求助。<br>在邻居家门口听到唱戏的声音，但是敲敲门，声音就停止了<br>打开门后发现几个简单的家具，架子上摆着遗像和骨灰盒。卧室门紧锁<br>透过锁孔看到的是卧室，但打开门后看到的是贴满符的空房子<br>出门来到客厅，传来电话铃声。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+        
+      
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/08/13/callable/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">callable</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-	
-	
-		</div></section>
-	
 
-	<!-- 页数指示器 -->
-	
+<!-- Table of Contents -->
 
-
-
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
 
 </section>
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Addon/" rel="tag">Addon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Godot/" rel="tag">Godot</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Random-Monster/" rel="tag">Random Monster</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Widget/" rel="tag">Widget</a><span class="tag-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Addon/" style="font-size: 10px;">Addon</a> <a href="/tags/Godot/" style="font-size: 20px;">Godot</a> <a href="/tags/Random-Monster/" style="font-size: 15px;">Random Monster</a> <a href="/tags/Widget/" style="font-size: 15px;">Widget</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2024/11/30/LANMultiplayer/">LANMultiplayer</a>
-          </li>
-        
-          <li>
-            <a href="/2024/08/13/callable/">callable</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/29/FSM/">FSM</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/01/signalbus/">signalbus</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/21/git-note/">git_note</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
       
@@ -343,6 +312,10 @@
 
 
 
+  
+<script src="/js/dialog.js"></script>
+
+
 
 
 
@@ -418,6 +391,8 @@
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 </body>
 </html>

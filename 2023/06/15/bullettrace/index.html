@@ -9,15 +9,15 @@
   
   
   
-  <meta name="description" content="本视频基于youtuber picster的tutorial做笔记 https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;bqyDm0MmGqg 为游戏增加射击轨迹增加枪口指向性，辅助射击有很大用处 123456789101112131415161718192021222324252627282930313233343536373839404142434445extends Line2D">
+  <meta name="description" content="本视频基于youtuber picster的tutorial做笔记 https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;bqyDm0MmGqg 这段代码是一个基于 Godot 引擎的 Line2D 子类，用于实现动态烟雾轨迹效果为游戏增加射击轨迹，增加枪口指向性，辅助射击有很大用处。以下是代码分解和详细解析This code is a Line2D subclass in the Go">
 <meta property="og:type" content="article">
 <meta property="og:title" content="bullettrace">
 <meta property="og:url" content="http://duck-ridge.github.io/2023/06/15/bullettrace/index.html">
 <meta property="og:site_name" content="Duck Ridge">
-<meta property="og:description" content="本视频基于youtuber picster的tutorial做笔记 https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;bqyDm0MmGqg 为游戏增加射击轨迹增加枪口指向性，辅助射击有很大用处 123456789101112131415161718192021222324252627282930313233343536373839404142434445extends Line2D">
+<meta property="og:description" content="本视频基于youtuber picster的tutorial做笔记 https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;bqyDm0MmGqg 这段代码是一个基于 Godot 引擎的 Line2D 子类，用于实现动态烟雾轨迹效果为游戏增加射击轨迹，增加枪口指向性，辅助射击有很大用处。以下是代码分解和详细解析This code is a Line2D subclass in the Go">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-06-15T05:50:51.000Z">
-<meta property="article:modified_time" content="2023-08-29T16:57:52.382Z">
+<meta property="article:published_time" content="2023-06-15T11:50:51.000Z">
+<meta property="article:modified_time" content="2025-01-18T23:37:51.253Z">
 <meta property="article:author" content="Todd Huang">
 <meta name="twitter:card" content="summary">
   
@@ -148,7 +148,7 @@
     <div class="article-meta">
       
 	<a href="/2023/06/15/bullettrace/" class="article-date">
-	  <time datetime="2023-06-15T05:50:51.000Z" itemprop="datePublished">2023-06-15</time>
+	  <time datetime="2023-06-15T11:50:51.000Z" itemprop="datePublished">2023-06-15</time>
 	</a>
 
       
@@ -159,40 +159,29 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本视频基于youtuber picster的tutorial做笔记 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=bqyDm0MmGqg">https://www.youtube.com/watch?v=bqyDm0MmGqg</a></p>
-<p>为游戏增加射击轨迹<br>增加枪口指向性，辅助射击有很大用处</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">extends Line2D</span><br><span class="line"></span><br><span class="line">export var limited_life := false</span><br><span class="line">export var wildness := 3.0</span><br><span class="line">export var min_spawn_distance := 5.0</span><br><span class="line">export var gravity = Vector2.ZERO</span><br><span class="line"></span><br><span class="line">var lifetime := [0.5, 0.8]</span><br><span class="line">var tick_speed := 0.05</span><br><span class="line">var tick := 0.0</span><br><span class="line">var wild_speed := 0.1</span><br><span class="line">var point_age := [0.0]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">onready var tween := $Decay</span><br><span class="line"></span><br><span class="line">func _ready():</span><br><span class="line">  set_as_toplevel(true)</span><br><span class="line">	clear_points()</span><br><span class="line">	if limited_life:</span><br><span class="line">		stop()</span><br><span class="line"></span><br><span class="line">func stop():</span><br><span class="line">	tween.interpolate_property(self, &quot;modulate:a&quot;, 1.0, 0.0, rand_range(lifetime[0], lifetime[1]), Tween.TRANS_CIRC, Tween.EASE_OUT)</span><br><span class="line">	tween.start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func _physics_process(delta):</span><br><span class="line">	if tick &gt; tick_speed:</span><br><span class="line">		tick = 0</span><br><span class="line">		for p in get_point_count():</span><br><span class="line">			point_age[p] += 5 * delta</span><br><span class="line">			var rand_vector := Vector2(rand_range(-wild_speed, wild_speed), rand_range(-wild_speed, wild_speed))</span><br><span class="line">			points[p] += gravity + (rand_vector * wildness * point_age[p])</span><br><span class="line">	else:</span><br><span class="line">		tick += delta</span><br><span class="line"></span><br><span class="line">func add_point(point_pos: Vector2, at_pos = -1):</span><br><span class="line">	if get_point_count() &gt; 0 and point_pos.distance_to(points[get_point_count() - 1]) &lt; min_spawn_distance:</span><br><span class="line">		return</span><br><span class="line">	point_age.append(0.0)</span><br><span class="line">	.add_point(point_pos, at_pos)</span><br><span class="line"></span><br><span class="line">func _on_Decay_tween_all_completed():</span><br><span class="line">	queue_free()</span><br></pre></td></tr></table></figure>
-
-<p>～～～</p>
-<p>现在我来拆解一下变量</p>
-<p>##导出变量</p>
+<p>这段代码是一个基于 Godot 引擎的 Line2D 子类，用于实现动态烟雾轨迹效果为游戏增加射击轨迹，增加枪口指向性，辅助射击有很大用处。以下是代码分解和详细解析<br>This code is a Line2D subclass in the Godot Engine designed to create dynamic smoke trace effects. Below is a breakdown of its implementation:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export var limited_life := false</span><br><span class="line">export var wildness := 3.0</span><br><span class="line">export var min_spawn_distance := 5.0</span><br><span class="line">export var gravity = Vector2.ZERO</span><br></pre></td></tr></table></figure>
-<p>limited_life：trace是否永续存在<br>wildness：波动程度<br>min_spawn_distance：两个point之间的最小间隔<br>gravity：自然变化的方向（在我们的topdown game里没有）</p>
-<p>##变量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var lifetime := [0.5, 0.8]</span><br><span class="line">var tick_speed := 0.05</span><br><span class="line">var tick := 0.0</span><br><span class="line">var wild_speed := 0.1</span><br><span class="line">var point_age := [0.0]</span><br><span class="line"></span><br><span class="line">onready var tween := $Decay</span><br></pre></td></tr></table></figure>
-<p>lifetime：生成的trace将在这个范围内随机vanish，每一个point都会取决于倒计时的数字消失<br>tick_speed：经过的时间每次高于tick_speed就会执行一次行动<br>tick：从0开始计数<br>wild_speed：与上面的wildness相关<br>point_age：一个数组，记录每一个point相关的age</p>
-<h2 id="ready-func解析"><a href="#ready-func解析" class="headerlink" title="ready func解析"></a>ready func解析</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func _ready():</span><br><span class="line">  set_as_toplevel(true)</span><br><span class="line">	clear_points()</span><br><span class="line">	if limited_life:</span><br><span class="line">		stop()</span><br><span class="line"></span><br><span class="line">func stop():</span><br><span class="line">  tween.interpolate_property(self, &quot;modulate:a&quot;, 1.0, 0.0, rand_range(lifetime[0], lifetime[1]), Tween.TRANS_CIRC, Tween.EASE_OUT)</span><br><span class="line">  tween.start()</span><br></pre></td></tr></table></figure>
 
-<p>一旦初始化就会执行的内容：<br>set_as_toplevel(true)：整个trace gd中最重要的内容，浪费了我三天时间。toplevel是指程序运行结构上的top level，trace将不受parent node的影响<br>example：一个 char add child(bullet)，所以 bullet subordinate to char。然而如果将bullet 设置 set_as_toplevel(true)那bullet就不会受到父级char的transform的影响</p>
-<p>clear_points()：例行清空好文明！</p>
-<p>如果limited_life是真意味着trace不是永续，并且执行stop func</p>
-<p>stop func实际上是调用tween执行自然消失的动画，这个动画改变透明度从而决定烟雾整体的fade out（是fade out不是diffuse）</p>
-<p>##每一个物理帧</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func _physics_process(delta):</span><br><span class="line">	if tick &gt; tick_speed:</span><br><span class="line">		tick = 0</span><br><span class="line">		for p in get_point_count():</span><br><span class="line">			point_age[p] += 5 * delta</span><br><span class="line">			var rand_vector := Vector2(rand_range(-wild_speed, wild_speed), rand_range(-wild_speed, wild_speed))</span><br><span class="line">			points[p] += gravity + (rand_vector * wildness * point_age[p])</span><br><span class="line">	else:</span><br><span class="line">		tick += delta</span><br></pre></td></tr></table></figure>
-<p>每个物理帧都会检测是否达到tick的标准（tick_speed），如果达到标准就执行下列操作并清零重新计 tick<br>  遍历point pool array 中每一个point<br>    point_age对应的point array pool中每个 point 的生命值都增加。（这也是为什么 var point_age 默认需要有个 0.0，不然point_age[p]可能指向一个null）<br>    创建一个var rand_vector ，这是一个与wild_speed相关的随机vector<br>    而构成trace的每一个point都会根据rand_vector改变一点位置并且叠加gravity影响<br>若 tick 未达到执行tick的最小值（tick_speed）则tick增加delta时间</p>
-<p>#增加新的point</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func add_point(point_pos: Vector2, at_pos = -1):</span><br><span class="line">	if get_point_count() &gt; 0 and point_pos.distance_to(points[get_point_count() - 1]) &lt; min_spawn_distance:</span><br><span class="line">		return</span><br><span class="line">	point_age.append(0.0)</span><br><span class="line">	.add_point(point_pos, at_pos)</span><br></pre></td></tr></table></figure>
-<p>add_point本身是个built-in func而我将修饰它，它会往trace的 points 中添加新的 point，它包括两个var：1. 新 point 的坐标；2. 新 point 在pool array中的排序<br>当调用这个func的时候增加一个前置判断，如果</p>
-<ol>
-<li>pool array大于0（必须得先有个值）</li>
-<li>新的point的坐标与 pool array 中最后一个坐标（上一个添加的坐标）之间的距离小于最小值（var min_spawn_distance）<br>则不添加任何point，而是等待下一个机会</li>
-</ol>
-<p>如果通过前置筛选后才会执行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.add_point(point_pos, at_pos)</span><br></pre></td></tr></table></figure>
-<p>即原教旨主义，built in 版本的add_point()</p>
-<p>并且为一一对应的point_age增加一个新值</p>
-<p>##消失的tween与踢出</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func _on_Decay_tween_all_completed():</span><br><span class="line">	queue_free()</span><br></pre></td></tr></table></figure>
-<p>当烟雾的透明度彻底降低为0时候，tween会发出一个播放完毕的signal。此时trace没有必要留在engine中，它滴使命完成了，vanish吧</p>
+<p>limited_life：控制轨迹是否会永久存在。<br>wildness：波动程度，影响轨迹的随机运动幅度。<br>min_spawn_distance：两个点之间的最小生成间距。<br>gravity：引力方向，在 top-down 游戏中通常设置为零。</p>
+<p>limited_life: Determines whether the trace will have a finite lifetime.<br>wildness: Controls the degree of random movement in the trace.<br>min_spawn_distance: Minimum distance between two consecutive points in the trace.<br>gravity: Direction of natural movement, typically set to zero in top-down games.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var lifetime := [0.5, 0.8]</span><br><span class="line">var tick_speed := 0.05</span><br><span class="line">var tick := 0.0</span><br><span class="line">var wild_speed := 0.1</span><br><span class="line">var point_age := [0.0]</span><br><span class="line"></span><br><span class="line">onready var tween := $Decay</span><br></pre></td></tr></table></figure>
+
+<p>lifetime：轨迹消失时间范围，轨迹的透明度会根据随机生成的时间逐渐降低。<br>tick_speed：每次更新轨迹的时间间隔。<br>tick：计时器，从 0 开始计数。<br>wild_speed：轨迹运动的随机速度，与 wildness 共同决定点的运动效果。<br>point_age：记录每个点的“年龄”，即存活时间。<br>初始化函数</p>
+<p>lifetime: Randomized duration for the trace to fade out. Each point will disappear based on its assigned countdown.<br>tick_speed: Time interval for updating the trace.<br>tick: Timer counter starting from zero.<br>wild_speed: Random speed of movement, working with wildness to define point dynamics.<br>point_age: Tracks the age of each point in the trace.<br>Initialization</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func _ready():</span><br><span class="line">    set_as_toplevel(true)</span><br><span class="line">    clear_points()</span><br><span class="line">    if limited_life:</span><br><span class="line">        stop()</span><br><span class="line"></span><br><span class="line">func stop():</span><br><span class="line">    tween.interpolate_property(self, &quot;modulate:a&quot;, 1.0, 0.0, rand_range(lifetime[0], lifetime[1]), Tween.TRANS_CIRC, Tween.EASE_OUT)</span><br><span class="line">    tween.start()</span><br></pre></td></tr></table></figure>
+
+<p>set_as_toplevel(true)：设置为顶层节点，确保轨迹不受父节点的变换影响，例如旋转或缩放。这是实现动态轨迹的关键。<br>clear_points()：清空当前轨迹的点，为新轨迹做好准备。<br>stop()：使用 Tween 动画改变轨迹透明度，实现轨迹的渐隐效果。</p>
+<p>set_as_toplevel(true): Sets the trace node as a top-level node, ensuring it is unaffected by its parent’s transformations, such as rotation or scaling.<br>clear_points(): Clears all existing points in the trace.<br>stop(): Initiates a fade-out animation using Tween to reduce the trace’s transparency until it disappears.<br>物理帧更新</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func _physics_process(delta):</span><br><span class="line">    if tick &gt; tick_speed:</span><br><span class="line">        tick = 0</span><br><span class="line">        for p in get_point_count():</span><br><span class="line">            point_age[p] += 5 * delta</span><br><span class="line">            var rand_vector := Vector2(rand_range(-wild_speed, wild_speed), rand_range(-wild_speed, wild_speed))</span><br><span class="line">            points[p] += gravity + (rand_vector * wildness * point_age[p])</span><br><span class="line">    else:</span><br><span class="line">        tick += delta</span><br></pre></td></tr></table></figure>
+
+<p>如果 tick 超过 tick_speed，轨迹会更新位置并清零计时器：<br>每个点的“年龄”增加，与时间增量 delta 成比例。<br>为每个点生成随机运动方向 (rand_vector)，计算其新的位置并叠加重力影响。<br>如果 tick 未达到 tick_speed，计时器继续增加。<br>If tick exceeds tick_speed, the trace updates its position and resets the timer:<br>Each point’s age increases, proportional to the time increment delta.<br>A random movement vector (rand_vector) is generated for each point, affecting its position along with gravity.<br>If tick does not reach tick_speed, the timer increments.</p>
+<p><strong>添加新点</strong><br>Adding New Points</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func add_point(point_pos: Vector2, at_pos = -1):</span><br><span class="line">    if get_point_count() &gt; 0 and point_pos.distance_to(points[get_point_count() - 1]) &lt; min_spawn_distance:</span><br><span class="line">        return</span><br><span class="line">    point_age.append(0.0)</span><br><span class="line">    add_point(point_pos, at_pos)</span><br></pre></td></tr></table></figure>
+<p>筛选机制：新点的坐标与现有点之间的距离必须大于 min_spawn_distance，否则不会添加新点。<br>如果通过筛选：<br>新点坐标添加到 points 中。<br>同时为 point_age 添加对应的初始值 0.0。</p>
+<p>Filter Mechanism: The distance between the new point and the last point must exceed min_spawn_distance.<br>If passed:<br>The new point’s position is added to points.<br>A corresponding initial age value of 0.0 is added to point_age.</p>
+<p><strong>轨迹消失</strong><br>Trace Disappearance</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func _on_Decay_tween_all_completed():</span><br><span class="line">    queue_free()</span><br></pre></td></tr></table></figure>
+<p>当透明度动画完成后，Tween 会发出信号。此时，轨迹节点会从场景树中移除 (queue_free())，以节省资源。<br>Once the fade-out animation completes, the Tween sends a signal. At this point, the trace node is removed from the scene tree using queue_free(), conserving resources.</p>
 
       
     </div>
@@ -236,7 +225,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ready-func%E8%A7%A3%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">ready func解析</span></a></li></ol>
+        <ol class="nav">None</ol>
     
     </div>
   </aside>

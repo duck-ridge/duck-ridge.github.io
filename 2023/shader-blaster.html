@@ -17,7 +17,7 @@
 <meta property="og:description" content="explosion blast effectIn this page. I would like to summerize how to make blaster VFX in Godot engine shader. Blaster is one of the most useful effect and it can be used when you step on water, explos">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-11-16T16:47:29.000Z">
-<meta property="article:modified_time" content="2023-11-22T09:51:34.219Z">
+<meta property="article:modified_time" content="2025-01-18T22:43:19.034Z">
 <meta property="article:author" content="Todd Huang">
 <meta name="twitter:card" content="summary">
   
@@ -164,10 +164,11 @@
 <p>Blaster is one of the most useful effect and it can be used when you step on water, explosion or anything else.</p>
 <p>Node Structure: A sprite node under the textureRect node. And the textureRect will be edited.</p>
 <p>ColorRect -&gt; Material -&gt; Shader -&gt; New Shader</p>
-<p>你需要先思考以下四种图像<br>标准UV<br>&#x2F;&#x2F;	COLOR &#x3D; vec4(UV, 0.0, 1.0);</p>
-<p>标准UV极端化，只要表现出了一丁点红绿分布倾向马上就放大到一个标准单位<br>&#x2F;&#x2F;  COLOR &#x3D; vec4(normalize(UV), 0.0, 1.0);</p>
+<p>你需要先思考以下四种图像<br>Imaging four images down below:</p>
+<p>Standard UV<br>标准UV<br>&#x2F;&#x2F;	COLOR &#x3D; vec4(UV, 0.0, 1.0);</p>
+<p>Extremed Standard UV<br>标准UV极端化，只要表现出了一丁点红绿分布倾向马上就放大到一个标准单位<br>&#x2F;&#x2F;  COLOR &#x3D; vec4(normalize(UV), 0.0, 1.0);</p>
 <p>相当于标准UV体系中所有小于center的值都会被削弱至（0，0）归于黑暗，大于center的值也会被削弱center的量<br>&#x2F;&#x2F;	COLOR &#x3D; vec4(UV - center, 0.0, 1.0);</p>
-<p>最有意思的一个：第四象限所有都为为（0，0）因此normalize化后仍然是（0，0），只有纯中间的pixel减去xy值相等的center后不对r，g不表现出任何倾向性，因此成为了纯黄色<br>而正中心距离稍远的位置则会根据颜色倾向被极化<br>&#x2F;&#x2F;	COLOR &#x3D; vec4(normalize(UV - center), 0.0, 1.0);</p>
+<p>Most interesting one<br>最有意思的一个：第四象限所有都为为（0，0）因此normalize化后仍然是（0，0），只有纯中间的pixel减去xy值相等的center后不对r，g不表现出任何倾向性，因此成为了纯黄色<br>而正中心距离稍远的位置则会根据颜色倾向被极化<br>&#x2F;&#x2F;	COLOR &#x3D; vec4(normalize(UV - center), 0.0, 1.0);</p>
 <p>当你能看懂这四个时候就能看懂这个<br>COLOR &#x3D; vec4((UV - disp), 0.0, 1.0);</p>
 <p>尝试理解这个最普通的<br>COLOR &#x3D; texture(TEXTURE, UV);</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">shader_type canvas_item;</span><br><span class="line"></span><br><span class="line">uniform vec2 center = vec2(0.5, 0.5);</span><br><span class="line">uniform float force = 0.5;</span><br><span class="line"></span><br><span class="line">void fragment()&#123;</span><br><span class="line">	vec2 disp = normalize(UV - center) * force;</span><br><span class="line">	COLOR = texture(TEXTURE, (UV - disp));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
