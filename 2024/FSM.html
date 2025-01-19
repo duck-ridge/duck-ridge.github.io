@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>fsm finited state machine | Duck Ridge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="Here is a brief intro to FSM in GODOT 4The script: class of “state”:It contains basic var that a state should acquire.  what to do by frame what to do when enter or leave the signal when it leave  123">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FSM Finited State Machine">
+<meta property="og:url" content="http://duck-ridge.github.io/2024/FSM.html">
+<meta property="og:site_name" content="Duck Ridge">
+<meta property="og:description" content="Here is a brief intro to FSM in GODOT 4The script: class of “state”:It contains basic var that a state should acquire.  what to do by frame what to do when enter or leave the signal when it leave  123">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-05-29T11:15:42.000Z">
+<meta property="article:modified_time" content="2025-01-19T13:06:43.509Z">
+<meta property="article:author" content="Todd Huang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Duck Ridge" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.gif">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.gif">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+    <link rel="stylesheet" href="/css/archive.css" >
+  
+  
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body>
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                 >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.gif">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="index.search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://duck-ridge.github.io"></form>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="page-"  class="article article-type-page" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      FSM Finited State Machine
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2024/FSM.html" class="article-date">
+	  <time datetime="2024-05-29T11:15:42.000Z" itemprop="datePublished">2024-05-29</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Here-is-a-brief-intro-to-FSM-in-GODOT-4"><a href="#Here-is-a-brief-intro-to-FSM-in-GODOT-4" class="headerlink" title="Here is a brief intro to FSM in GODOT 4"></a>Here is a brief intro to FSM in GODOT 4</h1><p>The script: class of “state”:<br>It contains basic var that a state should acquire.</p>
+<ol>
+<li>what to do by frame</li>
+<li>what to do when enter or leave</li>
+<li>the signal when it leave</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">extends Node</span><br><span class="line">class_name State</span><br><span class="line"></span><br><span class="line">signal transitioned</span><br><span class="line"></span><br><span class="line">func enter():</span><br><span class="line">	pass</span><br><span class="line"></span><br><span class="line">func exist():</span><br><span class="line">	pass</span><br><span class="line"></span><br><span class="line">func update(_delta: float):</span><br><span class="line">	pass</span><br><span class="line"></span><br><span class="line">func physics_update(_delta: float):</span><br><span class="line">	pass</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Based-on-class-“state”-we-can-develop-a-further-state-“EnemyIdle”"><a href="#Based-on-class-“state”-we-can-develop-a-further-state-“EnemyIdle”" class="headerlink" title="Based on class “state”, we can develop a further state: “EnemyIdle”"></a>Based on class “state”, we can develop a further state: “EnemyIdle”</h1><ol>
+<li>specify the char that affect by FSM</li>
+<li>overwrite the funcs including enter(), update(), physics_update()</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">extends State</span><br><span class="line">class_name EnemyIdle</span><br><span class="line"></span><br><span class="line">@export var enemy: CharacterBody2D</span><br><span class="line">@export var move_speed:= 10</span><br><span class="line"></span><br><span class="line">var move_direction: Vector2</span><br><span class="line">var wander_time: float</span><br><span class="line"></span><br><span class="line">func random_wander():</span><br><span class="line">	move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()</span><br><span class="line">	wander_time = randf_range(1, 2)</span><br><span class="line"></span><br><span class="line">func enter():</span><br><span class="line">	random_wander()</span><br><span class="line"></span><br><span class="line">func update(delta: float):</span><br><span class="line">	if wander_time &gt; 0:</span><br><span class="line">		wander_time -= delta</span><br><span class="line">	else:</span><br><span class="line">		random_wander()</span><br><span class="line"></span><br><span class="line">func physics_update(delta: float):</span><br><span class="line">	if enemy:</span><br><span class="line">		enemy.velocity = move_direction * move_speed</span><br><span class="line"></span><br><span class="line">func exist():</span><br><span class="line">	pass</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="build-a-controller-for-FSM"><a href="#build-a-controller-for-FSM" class="headerlink" title="build a controller for FSM"></a>build a controller for FSM</h1>
+<ol>
+<li>go through all child node, add it into the dictionary if child node is state class<br>example: states {run: String: run: Node, idle: String: idle: Node …}</li>
+<li>the state signal connect to on_child_transition once it registered</li>
+<li>urge corresponding state work (notice! the update func of state is not a build-in func which means it is drive by this FSM controlloer)</li>
+<li>specify the current_state</li>
+<li>manage the transition between different state</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">extends Node</span><br><span class="line"></span><br><span class="line">@export var initial_state: State</span><br><span class="line"></span><br><span class="line">var current_state</span><br><span class="line">var states: Dictionary = &#123;&#125;</span><br><span class="line"></span><br><span class="line">func _ready():</span><br><span class="line">	for child in get_children():</span><br><span class="line">		if child is State:</span><br><span class="line">			states[child.name.to_lower()] = child</span><br><span class="line">			child.transitioned.connect(on_child_transition)</span><br><span class="line">	if initial_state:</span><br><span class="line">		initial_state.enter()</span><br><span class="line">		current_state = initial_state</span><br><span class="line"></span><br><span class="line">func _process(delta):</span><br><span class="line">	if current_state:</span><br><span class="line">		current_state.update(delta)</span><br><span class="line"></span><br><span class="line">func _physics_process(delta):</span><br><span class="line">	if current_state:</span><br><span class="line">		current_state.physics_update(delta)</span><br><span class="line"></span><br><span class="line">func on_child_transition(state, new_state_name):</span><br><span class="line">	if state != current_state:</span><br><span class="line">		return</span><br><span class="line">	var new_state = states.get(new_state_name.to_lower())</span><br><span class="line"></span><br><span class="line">	if !new_state:</span><br><span class="line">		return</span><br><span class="line">	if current_state:</span><br><span class="line">		current_state.exit()</span><br><span class="line">	new_state.enter()</span><br><span class="line">	current_state = new_state</span><br></pre></td></tr></table></figure>
+
+<p>、</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+<!-- Table of Contents -->
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2019 - 2025 Duck Ridge All Rights Reserved.</p>
+	      
+	      
+  		   	<p id="copyRightCn">Todd Huang hold copyright</p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Duck Ridge
+          </div>
+          <div class="panel-body">
+            Copyright © 2025 Todd Huang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+</body>
+</html>

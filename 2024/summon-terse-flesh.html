@@ -3,19 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>archives: 2023/6 | Duck Ridge</title>
+  <title>summon_terse_flesh | Duck Ridge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta name="description" content="Make Games And Some Sorts">
+  <meta name="description" content="##如何将Resource类型Item的Sprite传导给Interactable并自动生成Sprite和CollisionShape在游戏开发中，有时我们需要将一个物品的场景图片（scene_texture）自动传递给可交互对象（interactable），并根据该图片自动生成Sprite和CollisionShape2D。以下是如何实现这一功能的简单回顾。 Item类的属性首先，我们需要定义物">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Duck Ridge">
-<meta property="og:url" content="http://duck-ridge.github.io/archives/2023/06/index.html">
+<meta property="og:title" content="summon_terse_flesh">
+<meta property="og:url" content="http://duck-ridge.github.io/2024/summon-terse-flesh.html">
 <meta property="og:site_name" content="Duck Ridge">
-<meta property="og:description" content="Make Games And Some Sorts">
+<meta property="og:description" content="##如何将Resource类型Item的Sprite传导给Interactable并自动生成Sprite和CollisionShape在游戏开发中，有时我们需要将一个物品的场景图片（scene_texture）自动传递给可交互对象（interactable），并根据该图片自动生成Sprite和CollisionShape2D。以下是如何实现这一功能的简单回顾。 Item类的属性首先，我们需要定义物">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-08-29T23:04:47.000Z">
+<meta property="article:modified_time" content="2025-01-19T22:31:22.631Z">
 <meta property="article:author" content="Todd Huang">
 <meta name="twitter:card" content="summary">
   
@@ -131,110 +133,64 @@
             
       <div id="content" class="outer">
         
-          <section id="main">
-  <div class="archives-tags-wrap"><blockquote><span>There are 5 posts in total till now.</span></blockquote>
-
-
-<!-- 分页显示 -->
-
-	
-	
-		
-		
-		  
-		  
-		  <section class="archives-wrap">
-		    <div class="archive-year-wrap">
-		      <h1><a href="/archives/2023" class="archive-year">2023</a></h1>
-		    </div>
-		    <div class="archives">
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-	<a href="/2023/06/01/Cursor/" class="archive-article-date">
-	  <time datetime="2023-06-01T14:46:50.000Z" itemprop="datePublished">2023-06-01</time>
-	</a>
-
-      
+          <section id="main" style="float:none;"><article id="page-"  class="article article-type-page" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2023/06/01/Cursor/">Cursor? UI!  - Give it all to cursor</a>
+    <h1 class="thumb" class="article-title" itemprop="name">
+      summon_terse_flesh
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2024/summon-terse-flesh.html" class="article-date">
+	  <time datetime="2023-08-29T23:04:47.000Z" itemprop="datePublished">2023-08-30</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##如何将Resource类型Item的Sprite传导给Interactable并自动生成Sprite和CollisionShape<br>在游戏开发中，有时我们需要将一个物品的场景图片（scene_texture）自动传递给可交互对象（interactable），并根据该图片自动生成Sprite和CollisionShape2D。以下是如何实现这一功能的简单回顾。</p>
+<p><strong>Item类的属性</strong><br>首先，我们需要定义物品的基本属性。物品包括三个重要属性：</p>
+<ol>
+<li>description：物品的描述。</li>
+<li>prop_texture：物品在道具栏中显示的图片。</li>
+<li>scene_texture：物品在场景中显示的图片。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export var description: String</span><br><span class="line">export var prop_texture: Texture</span><br><span class="line">export var scene_texture: Texture</span><br></pre></td></tr></table></figure>
+
+<p><strong>Interactable类的实现</strong><br>作为与玩家交互的道具，interactable 需要呈现出scene_texture的样子。我们可以通过为interactable创建一个 export var 来拖入 scene_texture。</p>
+<p>由于interactable是一个广泛且基础的节点，其不一定需要texture。只有在检测到texture不为空时才会进行处理。为了实现这一逻辑，我们使用setget，并通过set_texture方法设置纹理。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">export var texture: Texture setget set_texture</span><br><span class="line"></span><br><span class="line"># 设置纹理的回调函数</span><br><span class="line">func set_texture(v: Texture):</span><br><span class="line">	texture = v</span><br><span class="line"></span><br><span class="line">	# 清理掉所有子节点</span><br><span class="line">	for node in get_children():</span><br><span class="line">		if node.owner == null:</span><br><span class="line">			node.queue_free()</span><br><span class="line"></span><br><span class="line">	# 如果纹理为空，则不做任何操作</span><br><span class="line">	if texture == null:</span><br><span class="line">		return</span><br><span class="line">	else:</span><br><span class="line">		# 根据纹理创建Sprite节点</span><br><span class="line">		var sprite = Sprite.new()</span><br><span class="line">		sprite.texture = texture</span><br><span class="line">		add_child(sprite)</span><br><span class="line"></span><br><span class="line">		# 创建并设置CollisionShape2D</span><br><span class="line">		var collider := CollisionShape2D.new()</span><br><span class="line">		collider.shape = RectangleShape2D.new()</span><br><span class="line">		collider.scale = v.get_size() / 20  # 调整比例以适配场景</span><br><span class="line">		print(v.get_size())  # 打印纹理的尺寸</span><br><span class="line"></span><br><span class="line">		add_child(collider)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
   </div>
+  
+    
+  
 </article>
-	
-	
-		</div></section>
-	
 
-	<!-- 页数指示器 -->
-	
-
-
-
+<!-- Table of Contents -->
 
 </section>
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2024/11/30/Import3Dmodel/">Import 3D model to godot 4.2</a>
-          </li>
-        
-          <li>
-            <a href="/2024/08/13/callable/">callable</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/21/git-note/">git_note</a>
-          </li>
-        
-          <li>
-            <a href="/2023/06/01/Cursor/">Cursor? UI!  - Give it all to cursor</a>
-          </li>
-        
-          <li>
-            <a href="/2023/05/07/camera/">camera</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
       

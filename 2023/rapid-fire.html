@@ -3,19 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>archives: 2023/6 | Duck Ridge</title>
+  <title>rapid_fire | Duck Ridge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta name="description" content="Make Games And Some Sorts">
+  <meta name="description" content="让武器实现快速射击（机枪模式） - Godot 示例在游戏开发中，枪械的射击模式通常有多种实现方式。例如，一些游戏中的武器是单发射击的，而另一些则可能是连续射击（如机枪模式）。在这篇文章中，我将介绍如何将一个原本单发射击的武器转变为快速射击模式，并让玩家在按住射击按钮时能够持续发射子弹。我们将通过调整冷却时间间隔来实现这一点。 In game development, there are vari">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Duck Ridge">
-<meta property="og:url" content="http://duck-ridge.github.io/archives/2023/06/index.html">
+<meta property="og:title" content="rapid_fire">
+<meta property="og:url" content="http://duck-ridge.github.io/2023/rapid-fire.html">
 <meta property="og:site_name" content="Duck Ridge">
-<meta property="og:description" content="Make Games And Some Sorts">
+<meta property="og:description" content="让武器实现快速射击（机枪模式） - Godot 示例在游戏开发中，枪械的射击模式通常有多种实现方式。例如，一些游戏中的武器是单发射击的，而另一些则可能是连续射击（如机枪模式）。在这篇文章中，我将介绍如何将一个原本单发射击的武器转变为快速射击模式，并让玩家在按住射击按钮时能够持续发射子弹。我们将通过调整冷却时间间隔来实现这一点。 In game development, there are vari">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-24T15:23:02.000Z">
+<meta property="article:modified_time" content="2025-01-19T22:19:36.191Z">
 <meta property="article:author" content="Todd Huang">
 <meta name="twitter:card" content="summary">
   
@@ -131,110 +133,63 @@
             
       <div id="content" class="outer">
         
-          <section id="main">
-  <div class="archives-tags-wrap"><blockquote><span>There are 5 posts in total till now.</span></blockquote>
-
-
-<!-- 分页显示 -->
-
-	
-	
-		
-		
-		  
-		  
-		  <section class="archives-wrap">
-		    <div class="archive-year-wrap">
-		      <h1><a href="/archives/2023" class="archive-year">2023</a></h1>
-		    </div>
-		    <div class="archives">
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-	<a href="/2023/06/01/Cursor/" class="archive-article-date">
-	  <time datetime="2023-06-01T14:46:50.000Z" itemprop="datePublished">2023-06-01</time>
-	</a>
-
-      
+          <section id="main" style="float:none;"><article id="page-"  class="article article-type-page" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2023/06/01/Cursor/">Cursor? UI!  - Give it all to cursor</a>
+    <h1 class="thumb" class="article-title" itemprop="name">
+      rapid_fire
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2023/rapid-fire.html" class="article-date">
+	  <time datetime="2023-05-24T15:23:02.000Z" itemprop="datePublished">2023-05-24</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="让武器实现快速射击（机枪模式）-Godot-示例"><a href="#让武器实现快速射击（机枪模式）-Godot-示例" class="headerlink" title="让武器实现快速射击（机枪模式） - Godot 示例"></a>让武器实现快速射击（机枪模式） - Godot 示例</h1><p>在游戏开发中，枪械的射击模式通常有多种实现方式。例如，一些游戏中的武器是单发射击的，而另一些则可能是连续射击（如机枪模式）。在这篇文章中，我将介绍如何将一个原本单发射击的武器转变为快速射击模式，并让玩家在按住射击按钮时能够持续发射子弹。我们将通过调整冷却时间间隔来实现这一点。</p>
+<p>In game development, there are various shooting modes for weapons. For example, some weapons in games are single-shot, while others may be continuous fire (like a machine gun). In this article, I will show how to convert a weapon from a single-shot to a rapid-fire mode, allowing the player to continuously fire bullets by holding down the shoot button. We will achieve this by adjusting the cooldown interval.</p>
+<h2 id="问题描述-x2F-Problem-Description"><a href="#问题描述-x2F-Problem-Description" class="headerlink" title="# 问题描述 &#x2F; Problem Description"></a># 问题描述 &#x2F; Problem Description</h2><p>原本的代码结构如下所示，武器是单次射击的，每次按下射击按钮都会触发一次射击：</p>
+<p>The original code structure is as follows, where the weapon is single-shot, and every time the shoot button is pressed, it triggers one shot:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># execute &quot;shoot()&quot; when &quot;ui_shoot&quot; just pressed</span><br><span class="line">func _unhandled_input(event):</span><br><span class="line">    if Input.is_action_just_pressed(&quot;ui_shoot&quot;):</span><br><span class="line">        shoot()</span><br><span class="line"></span><br><span class="line">func shoot():</span><br><span class="line">    if cooldown.is_stopped():</span><br><span class="line">        muzzle_anim()</span><br><span class="line">        var bullet_instance = Bullet.instance()</span><br><span class="line">        # var bullet_direction = guntip.global_position - gunbarrel.global_position</span><br><span class="line">        var bullet_direction = random_select_aim() - gunbarrel.global_position</span><br><span class="line">        emit_signal(&quot;fire&quot;, bullet_instance, gunbarrel.global_position, bullet_direction)</span><br><span class="line">        emit_signal(&quot;recoil&quot;)</span><br><span class="line">        cooldown.start()</span><br></pre></td></tr></table></figure>
+
+
+<p>如上所述，当按下射击按钮时，<code>shoot()</code>函数会触发，并生成一个子弹实例。每次按下按钮都会触发一次射击，冷却时间通过 <code>cooldown.start()</code> 控制。</p>
+<p>As mentioned above, when the shoot button is pressed, the <code>shoot()</code> function is triggered and a bullet instance is created. Each time the button is pressed, one shot is fired, and the cooldown is controlled by <code>cooldown.start()</code>.</p>
+<h2 id="改进目标-x2F-Improvement-Goal"><a href="#改进目标-x2F-Improvement-Goal" class="headerlink" title="# 改进目标 &#x2F; Improvement Goal"></a># 改进目标 &#x2F; Improvement Goal</h2><p>我们希望将武器改为类似机枪的模式，也就是当按住射击按钮时，武器能够持续发射子弹，而不需要每次都按下按钮。这可以通过减少每次射击之间的冷却时间来实现。</p>
+<p>The goal is to convert the weapon into a machine-gun-like mode, where holding down the shoot button causes the weapon to continuously fire bullets without needing to press the button each time. This can be achieved by reducing the cooldown interval between shots.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
   </div>
+  
+    
+  
 </article>
-	
-	
-		</div></section>
-	
 
-	<!-- 页数指示器 -->
-	
-
-
-
+<!-- Table of Contents -->
 
 </section>
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2024/11/30/Import3Dmodel/">Import 3D model to godot 4.2</a>
-          </li>
-        
-          <li>
-            <a href="/2024/08/13/callable/">callable</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/21/git-note/">git_note</a>
-          </li>
-        
-          <li>
-            <a href="/2023/06/01/Cursor/">Cursor? UI!  - Give it all to cursor</a>
-          </li>
-        
-          <li>
-            <a href="/2023/05/07/camera/">camera</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
       

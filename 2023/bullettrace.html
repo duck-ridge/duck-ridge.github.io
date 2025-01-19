@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>bullettrace | Duck Ridge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="本视频基于youtuber picster的tutorial做笔记 https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;bqyDm0MmGqg 这段代码是一个基于 Godot 引擎的 Line2D 子类，用于实现动态烟雾轨迹效果为游戏增加射击轨迹，增加枪口指向性，辅助射击有很大用处。以下是代码分解和详细解析This code is a Line2D subclass in the Go">
+<meta property="og:type" content="website">
+<meta property="og:title" content="bullettrace">
+<meta property="og:url" content="http://duck-ridge.github.io/2023/bullettrace.html">
+<meta property="og:site_name" content="Duck Ridge">
+<meta property="og:description" content="本视频基于youtuber picster的tutorial做笔记 https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;bqyDm0MmGqg 这段代码是一个基于 Godot 引擎的 Line2D 子类，用于实现动态烟雾轨迹效果为游戏增加射击轨迹，增加枪口指向性，辅助射击有很大用处。以下是代码分解和详细解析This code is a Line2D subclass in the Go">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-15T11:50:51.000Z">
+<meta property="article:modified_time" content="2025-01-18T23:37:51.253Z">
+<meta property="article:author" content="Todd Huang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Duck Ridge" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.gif">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.gif">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+    <link rel="stylesheet" href="/css/archive.css" >
+  
+  
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body>
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                 >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.gif">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="index.search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://duck-ridge.github.io"></form>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="page-"  class="article article-type-page" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      bullettrace
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2023/bullettrace.html" class="article-date">
+	  <time datetime="2023-06-15T11:50:51.000Z" itemprop="datePublished">2023-06-15</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本视频基于youtuber picster的tutorial做笔记 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=bqyDm0MmGqg">https://www.youtube.com/watch?v=bqyDm0MmGqg</a></p>
+<p>这段代码是一个基于 Godot 引擎的 Line2D 子类，用于实现动态烟雾轨迹效果为游戏增加射击轨迹，增加枪口指向性，辅助射击有很大用处。以下是代码分解和详细解析<br>This code is a Line2D subclass in the Godot Engine designed to create dynamic smoke trace effects. Below is a breakdown of its implementation:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export var limited_life := false</span><br><span class="line">export var wildness := 3.0</span><br><span class="line">export var min_spawn_distance := 5.0</span><br><span class="line">export var gravity = Vector2.ZERO</span><br></pre></td></tr></table></figure>
+
+<p>limited_life：控制轨迹是否会永久存在。<br>wildness：波动程度，影响轨迹的随机运动幅度。<br>min_spawn_distance：两个点之间的最小生成间距。<br>gravity：引力方向，在 top-down 游戏中通常设置为零。</p>
+<p>limited_life: Determines whether the trace will have a finite lifetime.<br>wildness: Controls the degree of random movement in the trace.<br>min_spawn_distance: Minimum distance between two consecutive points in the trace.<br>gravity: Direction of natural movement, typically set to zero in top-down games.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var lifetime := [0.5, 0.8]</span><br><span class="line">var tick_speed := 0.05</span><br><span class="line">var tick := 0.0</span><br><span class="line">var wild_speed := 0.1</span><br><span class="line">var point_age := [0.0]</span><br><span class="line"></span><br><span class="line">onready var tween := $Decay</span><br></pre></td></tr></table></figure>
+
+<p>lifetime：轨迹消失时间范围，轨迹的透明度会根据随机生成的时间逐渐降低。<br>tick_speed：每次更新轨迹的时间间隔。<br>tick：计时器，从 0 开始计数。<br>wild_speed：轨迹运动的随机速度，与 wildness 共同决定点的运动效果。<br>point_age：记录每个点的“年龄”，即存活时间。<br>初始化函数</p>
+<p>lifetime: Randomized duration for the trace to fade out. Each point will disappear based on its assigned countdown.<br>tick_speed: Time interval for updating the trace.<br>tick: Timer counter starting from zero.<br>wild_speed: Random speed of movement, working with wildness to define point dynamics.<br>point_age: Tracks the age of each point in the trace.<br>Initialization</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func _ready():</span><br><span class="line">    set_as_toplevel(true)</span><br><span class="line">    clear_points()</span><br><span class="line">    if limited_life:</span><br><span class="line">        stop()</span><br><span class="line"></span><br><span class="line">func stop():</span><br><span class="line">    tween.interpolate_property(self, &quot;modulate:a&quot;, 1.0, 0.0, rand_range(lifetime[0], lifetime[1]), Tween.TRANS_CIRC, Tween.EASE_OUT)</span><br><span class="line">    tween.start()</span><br></pre></td></tr></table></figure>
+
+<p>set_as_toplevel(true)：设置为顶层节点，确保轨迹不受父节点的变换影响，例如旋转或缩放。这是实现动态轨迹的关键。<br>clear_points()：清空当前轨迹的点，为新轨迹做好准备。<br>stop()：使用 Tween 动画改变轨迹透明度，实现轨迹的渐隐效果。</p>
+<p>set_as_toplevel(true): Sets the trace node as a top-level node, ensuring it is unaffected by its parent’s transformations, such as rotation or scaling.<br>clear_points(): Clears all existing points in the trace.<br>stop(): Initiates a fade-out animation using Tween to reduce the trace’s transparency until it disappears.<br>物理帧更新</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func _physics_process(delta):</span><br><span class="line">    if tick &gt; tick_speed:</span><br><span class="line">        tick = 0</span><br><span class="line">        for p in get_point_count():</span><br><span class="line">            point_age[p] += 5 * delta</span><br><span class="line">            var rand_vector := Vector2(rand_range(-wild_speed, wild_speed), rand_range(-wild_speed, wild_speed))</span><br><span class="line">            points[p] += gravity + (rand_vector * wildness * point_age[p])</span><br><span class="line">    else:</span><br><span class="line">        tick += delta</span><br></pre></td></tr></table></figure>
+
+<p>如果 tick 超过 tick_speed，轨迹会更新位置并清零计时器：<br>每个点的“年龄”增加，与时间增量 delta 成比例。<br>为每个点生成随机运动方向 (rand_vector)，计算其新的位置并叠加重力影响。<br>如果 tick 未达到 tick_speed，计时器继续增加。<br>If tick exceeds tick_speed, the trace updates its position and resets the timer:<br>Each point’s age increases, proportional to the time increment delta.<br>A random movement vector (rand_vector) is generated for each point, affecting its position along with gravity.<br>If tick does not reach tick_speed, the timer increments.</p>
+<p><strong>添加新点</strong><br>Adding New Points</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func add_point(point_pos: Vector2, at_pos = -1):</span><br><span class="line">    if get_point_count() &gt; 0 and point_pos.distance_to(points[get_point_count() - 1]) &lt; min_spawn_distance:</span><br><span class="line">        return</span><br><span class="line">    point_age.append(0.0)</span><br><span class="line">    add_point(point_pos, at_pos)</span><br></pre></td></tr></table></figure>
+<p>筛选机制：新点的坐标与现有点之间的距离必须大于 min_spawn_distance，否则不会添加新点。<br>如果通过筛选：<br>新点坐标添加到 points 中。<br>同时为 point_age 添加对应的初始值 0.0。</p>
+<p>Filter Mechanism: The distance between the new point and the last point must exceed min_spawn_distance.<br>If passed:<br>The new point’s position is added to points.<br>A corresponding initial age value of 0.0 is added to point_age.</p>
+<p><strong>轨迹消失</strong><br>Trace Disappearance</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func _on_Decay_tween_all_completed():</span><br><span class="line">    queue_free()</span><br></pre></td></tr></table></figure>
+<p>当透明度动画完成后，Tween 会发出信号。此时，轨迹节点会从场景树中移除 (queue_free())，以节省资源。<br>Once the fade-out animation completes, the Tween sends a signal. At this point, the trace node is removed from the scene tree using queue_free(), conserving resources.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+<!-- Table of Contents -->
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2019 - 2025 Duck Ridge All Rights Reserved.</p>
+	      
+	      
+  		   	<p id="copyRightCn">Todd Huang hold copyright</p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Duck Ridge
+          </div>
+          <div class="panel-body">
+            Copyright © 2025 Todd Huang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+</body>
+</html>
