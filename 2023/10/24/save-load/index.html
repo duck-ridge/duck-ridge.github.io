@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>save_load | Duck Ridge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="Godot 保存与加载系统 - 技术笔记 &#x2F; Save and Load System for Godot - A Tech Note引言 &#x2F; Introduction我将我的游戏定义为“实验性”的。很大程度上，它关乎我的游戏设计模式。任何在制作和设计同时进行，并有意探索某些不确定（无论是游戏叙事还是游戏机制）的游戏，我都称之为“实验性”的。因此，这样的游戏总是伴随大量的副产品">
+<meta property="og:type" content="article">
+<meta property="og:title" content="save_load">
+<meta property="og:url" content="http://duck-ridge.github.io/2023/10/24/save-load/index.html">
+<meta property="og:site_name" content="Duck Ridge">
+<meta property="og:description" content="Godot 保存与加载系统 - 技术笔记 &#x2F; Save and Load System for Godot - A Tech Note引言 &#x2F; Introduction我将我的游戏定义为“实验性”的。很大程度上，它关乎我的游戏设计模式。任何在制作和设计同时进行，并有意探索某些不确定（无论是游戏叙事还是游戏机制）的游戏，我都称之为“实验性”的。因此，这样的游戏总是伴随大量的副产品">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-24T12:40:30.000Z">
+<meta property="article:modified_time" content="2025-01-19T22:22:30.473Z">
+<meta property="article:author" content="Todd Huang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Duck Ridge" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.gif">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.gif">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.gif">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="index.search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://duck-ridge.github.io"></form>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-save-load" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      save_load
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2023/10/24/save-load/" class="article-date">
+	  <time datetime="2023-10-24T12:40:30.000Z" itemprop="datePublished">2023-10-24</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Godot-保存与加载系统-技术笔记-x2F-Save-and-Load-System-for-Godot-A-Tech-Note"><a href="#Godot-保存与加载系统-技术笔记-x2F-Save-and-Load-System-for-Godot-A-Tech-Note" class="headerlink" title="Godot 保存与加载系统 - 技术笔记 &#x2F; Save and Load System for Godot - A Tech Note"></a>Godot 保存与加载系统 - 技术笔记 &#x2F; Save and Load System for Godot - A Tech Note</h1><h2 id="引言-x2F-Introduction"><a href="#引言-x2F-Introduction" class="headerlink" title="引言 &#x2F; Introduction"></a>引言 &#x2F; Introduction</h2><p>我将我的游戏定义为“实验性”的。很大程度上，它关乎我的游戏设计模式。任何在制作和设计同时进行，并有意探索某些不确定（无论是游戏叙事还是游戏机制）的游戏，我都称之为“实验性”的。因此，这样的游戏总是伴随大量的副产品。有趣的是，虽然我的游戏几乎完成，但在写这篇博客之前，我并不确定如何实现保存与加载系统，甚至都没为它起个名字。现在我暂时用代码名“SloMa”，由“slot machine”这两个词结合而来。</p>
+<p>I define my game as “experimental.” To a large extent, it’s all about my game design pattern. Any game that is being made and designed simultaneously, with intentional exploration of something unsure (whether it’s game narration or mechanics), will be described as “experimental” by me. Therefore, such a game always comes with numerous side products. The fun fact is that my game is almost done, but before writing this blog, I was unsure about how to implement the save and load system, and I haven’t even figured out a name for it. For now, I am calling it “SloMa,” derived from the combination of the words “slot machine.”</p>
+<h2 id="如何实现-x2F-How-to-Achieve-It"><a href="#如何实现-x2F-How-to-Achieve-It" class="headerlink" title="如何实现 &#x2F; How to Achieve It"></a>如何实现 &#x2F; How to Achieve It</h2><p>我从GDquest学到了这个方法。</p>
+<p>I learned this system from GDquest.</p>
+<h3 id="代码示例：保存游戏功能-x2F-Code-Example-Save-Game-Functionality"><a href="#代码示例：保存游戏功能-x2F-Code-Example-Save-Game-Functionality" class="headerlink" title="代码示例：保存游戏功能 &#x2F; Code Example: Save Game Functionality"></a>代码示例：保存游戏功能 &#x2F; Code Example: Save Game Functionality</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">extends Node2D</span><br><span class="line"></span><br><span class="line">export var level_unlock_stat = &#123;&quot;level1-1&quot;: false, &quot;level1-2&quot;: false, &quot;level1-3&quot;: false&#125;</span><br><span class="line">const SAVE_PATH = &quot;user://data.csv&quot;</span><br><span class="line"></span><br><span class="line">func save_game():</span><br><span class="line">    var file := File.new()</span><br><span class="line">    if file.open(SAVE_PATH, File.WRITE) != OK:</span><br><span class="line">        return</span><br><span class="line">    var level_data = level_unlock_stat</span><br><span class="line">    var json = to_json(level_data)</span><br><span class="line">    file.store_string(json)</span><br><span class="line"></span><br><span class="line">func load_game():</span><br><span class="line">    var file := File.new()</span><br><span class="line">    if file.open(SAVE_PATH, File.READ) != OK:</span><br><span class="line">        return</span><br><span class="line">    var json = file.get_as_text()</span><br><span class="line">    var level_data = parse_json(json) as Dictionary</span><br><span class="line">    level_unlock_stat = level_data</span><br><span class="line">    check_status()</span><br><span class="line"></span><br><span class="line">func _ready():</span><br><span class="line">    load_game()</span><br><span class="line"></span><br><span class="line">func check_status():</span><br><span class="line">    match level_unlock_stat[&quot;level1-1&quot;]:</span><br><span class="line">        true:</span><br><span class="line">            $Sprite/VBoxContainer/Button1.disabled = true</span><br><span class="line">        false:</span><br><span class="line">            $Sprite/VBoxContainer/Button1.disabled = false</span><br><span class="line"></span><br><span class="line">func _on_Button1_pressed():</span><br><span class="line">    get_tree().change_scene(&quot;res://FormalMap/Prologue.tscn&quot;)</span><br><span class="line"></span><br><span class="line">func _on_Button2_pressed():</span><br><span class="line">    level_unlock_stat[&quot;level1-1&quot;] = !level_unlock_stat[&quot;level1-1&quot;]</span><br><span class="line">    if level_unlock_stat[&quot;level1-1&quot;] == true:</span><br><span class="line">        print(level_unlock_stat)</span><br><span class="line">    check_status()</span><br><span class="line"></span><br><span class="line">func _on_Button3_pressed():</span><br><span class="line">    save_game()</span><br><span class="line"></span><br><span class="line">func _on_Button4_pressed():</span><br><span class="line">    get_tree().quit()</span><br></pre></td></tr></table></figure>
+<ol>
+<li>创建文件 &#x2F; Create File<br>首先，实例化一个 File 对象，并命名为 current_file。然后检查文件是否能够成功以 WRITE 模式打开，检查通过后（返回 OK），就可以开始向文件写入数据。</li>
+</ol>
+<p>Firstly, instantiate a File object and name it current_file. Check if the file can be opened in WRITE mode using open(). If successful (returns OK), you can proceed to write data to it.</p>
+<ol start="2">
+<li>选择数据保存 &#x2F; Select Data to Save<br>选择你想要保存的数据（例如 level_unlock_stat，这是一个字典）。</li>
+</ol>
+<p>Choose the data (e.g., level_unlock_stat, which is a dictionary) that needs to be saved.</p>
+<ol start="3">
+<li>转换为JSON &#x2F; Convert to JSON<br>使用 Godot 的 to_json() 函数将数据转换为 JSON 格式。JSON 是一种流行的格式，允许在不同平台之间轻松传输，但它只支持某些数据类型（如字符串、数字、数组、布尔值等）。</li>
+</ol>
+<p>Use Godot’s to_json() function to convert your data into a JSON format. JSON is a popular format as it allows easy transfer between platforms, but it only supports certain data types, such as strings, numbers, arrays, booleans, etc.</p>
+<ol start="4">
+<li>保存转换后的数据 &#x2F; Save the Converted Data<br>使用 store_string() 函数将转换后的 JSON 数据以字符串形式存储到文件中。注意，JSON 格式不直接支持字典类型，因此将其转换为字符串是必要的。</li>
+</ol>
+<p>Use store_string() to store the JSON data as a string in the file. Note that you cannot directly save a Dictionary in JSON, so converting it to a string is necessary.</p>
+<ol start="5">
+<li>验证文件内容 &#x2F; Verify File Content<br>要验证文件内容，你不能仅仅在项目文件中查看。需要通过 Godot 的界面检查用户数据文件：点击 “Project” &gt; “Open User Data File”。你应该能在那里找到 data.csv。</li>
+</ol>
+<p>To verify the file content, you cannot simply check the project file itself. You need to open the user data file via Godot’s interface: “Project” &gt; “Open User Data File”. You should find data.csv there.</p>
+<p>#游戏加载机制 &#x2F; Game Loading Mechanism</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">func load_game():</span><br><span class="line">    var file := File.new()</span><br><span class="line">    if file.open(SAVE_PATH, File.READ) != OK:</span><br><span class="line">        return</span><br><span class="line">    var json = file.get_as_text()</span><br><span class="line">    var level_data = parse_json(json) as Dictionary</span><br><span class="line">    level_unlock_stat = level_data</span><br><span class="line">    check_status()</span><br></pre></td></tr></table></figure>
+<ol>
+<li>检查文件 &#x2F; Check File<br>首先，验证文件是否存在且可读取。打开文件时使用 READ 模式，如果不能读取，则返回。</li>
+</ol>
+<p>First, verify if the file exists and can be read by opening it in READ mode. If not, the function will simply return.</p>
+<ol start="2">
+<li>选择数据 &#x2F; Load Data<br>使用 get_as_text() 读取文件的内容，并将其保存为一个字符串。根据 Godot 文档，get_as_text() 会将文件内容作为 UTF-8 编码的字符串返回。</li>
+</ol>
+<p>Use get_as_text() to read the file’s content into a string. This is UTF-8 encoded text.</p>
+<ol start="3">
+<li>转换为正确的格式 &#x2F; Convert to the Right Form<br>文件的 JSON 格式数据需要转换回原来的格式，这里是一个字典类型。我们使用 parse_json() 将其转换回来。</li>
+</ol>
+<p>Once the file content is loaded as a JSON string, use parse_json() to convert it back into a Dictionary.</p>
+<ol start="4">
+<li>更新游戏状态 &#x2F; Update Game State<br>将解密后的数据赋值给 level_unlock_stat，并调用 check_status() 来更新游戏的状态。</li>
+</ol>
+<p>After converting the data, update the level_unlock_stat to reflect the saved state and call check_status() to apply the UI changes.<br>ts.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+        
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/11/13/shader101/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          shader101
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/24/light-parallax/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">light_parallax</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Godot-%E4%BF%9D%E5%AD%98%E4%B8%8E%E5%8A%A0%E8%BD%BD%E7%B3%BB%E7%BB%9F-%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0-x2F-Save-and-Load-System-for-Godot-A-Tech-Note"><span class="nav-number">1.</span> <span class="nav-text">Godot 保存与加载系统 - 技术笔记 &#x2F; Save and Load System for Godot - A Tech Note</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80-x2F-Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">引言 &#x2F; Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-x2F-How-to-Achieve-It"><span class="nav-number">1.2.</span> <span class="nav-text">如何实现 &#x2F; How to Achieve It</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BF%9D%E5%AD%98%E6%B8%B8%E6%88%8F%E5%8A%9F%E8%83%BD-x2F-Code-Example-Save-Game-Functionality"><span class="nav-number">1.2.1.</span> <span class="nav-text">代码示例：保存游戏功能 &#x2F; Code Example: Save Game Functionality</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2019 - 2025 Duck Ridge All Rights Reserved.</p>
+	      
+	      
+  		   	<p id="copyRightCn">Todd Huang hold copyright</p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Duck Ridge
+          </div>
+          <div class="panel-body">
+            Copyright © 2025 Todd Huang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>selection | Duck Ridge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="How to Create an RTS-Like Selection Box in Godot 4.2Introduction &#x2F; 引言Actually, it has been a while since Godot 4 released. There are some reasons that stopped me from trying it:  I was developing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="selection">
+<meta property="og:url" content="http://duck-ridge.github.io/2024/01/15/selection/index.html">
+<meta property="og:site_name" content="Duck Ridge">
+<meta property="og:description" content="How to Create an RTS-Like Selection Box in Godot 4.2Introduction &#x2F; 引言Actually, it has been a while since Godot 4 released. There are some reasons that stopped me from trying it:  I was developing">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-15T16:05:33.000Z">
+<meta property="article:modified_time" content="2025-01-19T22:26:24.929Z">
+<meta property="article:author" content="Todd Huang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Duck Ridge" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.gif">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.gif">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.gif">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="index.search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://duck-ridge.github.io"></form>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-selection" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      selection
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2024/01/15/selection/" class="article-date">
+	  <time datetime="2024-01-15T16:05:33.000Z" itemprop="datePublished">2024-01-15</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="How-to-Create-an-RTS-Like-Selection-Box-in-Godot-4-2"><a href="#How-to-Create-an-RTS-Like-Selection-Box-in-Godot-4-2" class="headerlink" title="How to Create an RTS-Like Selection Box in Godot 4.2"></a>How to Create an RTS-Like Selection Box in Godot 4.2</h1><h2 id="Introduction-x2F-引言"><a href="#Introduction-x2F-引言" class="headerlink" title="Introduction &#x2F; 引言"></a>Introduction &#x2F; 引言</h2><p>Actually, it has been a while since Godot 4 released. There are some reasons that stopped me from trying it:</p>
+<ol>
+<li>I was developing my game <em>Effluent</em> in Godot 3.5 already, and numerous rules and functions had changed.</li>
+<li>New engines always come with some inherited problems.</li>
+</ol>
+<p>实际上，自从Godot 4发布以来已经有一段时间了。有一些原因让我没有尝试它：</p>
+<ol>
+<li>我已经在使用Godot 3.5开发我的游戏 <em>Effluent</em>，而且许多规则和功能发生了变化。</li>
+<li>新引擎总是会带来一些继承的问题。</li>
+</ol>
+<p>I am working on selection these days and it looks OK.</p>
+<p>这些天我正在处理选择框功能，效果还不错。</p>
+<h2 id="Code-x2F-代码"><a href="#Code-x2F-代码" class="headerlink" title="Code &#x2F; 代码"></a>Code &#x2F; 代码</h2><h3 id="Selection-Box-Logic-x2F-选择框逻辑"><a href="#Selection-Box-Logic-x2F-选择框逻辑" class="headerlink" title="Selection Box Logic &#x2F; 选择框逻辑"></a>Selection Box Logic &#x2F; 选择框逻辑</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">extends ColorRect</span><br><span class="line"></span><br><span class="line">var is_dragging : bool = false</span><br><span class="line">var drag_start_pos : Vector2</span><br><span class="line">var drag_end_pos : Vector2</span><br><span class="line"></span><br><span class="line">func _input(event):</span><br><span class="line">    if event is InputEventMouseButton:</span><br><span class="line">        if event.button_index == 1 and event.is_pressed():</span><br><span class="line">            if is_dragging != true:</span><br><span class="line">                is_dragging = true</span><br><span class="line">                drag_start_pos = get_global_mouse_position()</span><br><span class="line">                $&quot;.&quot;.global_position = drag_start_pos</span><br><span class="line"></span><br><span class="line">        elif event.is_pressed() == false:</span><br><span class="line">            if is_dragging == true:</span><br><span class="line">                is_dragging = false</span><br><span class="line">                drag_end_pos = get_global_mouse_position()</span><br><span class="line">                self.hide()</span><br><span class="line"></span><br><span class="line">    if event is InputEventMouseMotion:</span><br><span class="line">        if is_dragging == true:</span><br><span class="line">            self.show()</span><br><span class="line">            _update()</span><br></pre></td></tr></table></figure>
+
+<p>Explanation of Variables &#x2F; 变量解释</p>
+<ul>
+<li><p>is_dragging: Whether the player is in selection mode.</p>
+</li>
+<li><p>drag_start_pos: The starting position of the selection rectangle (ColorRect).</p>
+</li>
+<li><p>drag_end_pos: The ending position of the selection rectangle.</p>
+</li>
+<li><p>is_dragging: 玩家是否处于选择模式。</p>
+</li>
+<li><p>drag_start_pos: 选择框（ColorRect）的起始位置。</p>
+</li>
+<li><p>drag_end_pos: 选择框的结束位置。</p>
+</li>
+</ul>
+<p><strong>Logic for Drag Selection Rectangle &#x2F; 拖动选择框逻辑</strong><br>Set is_dragging to true when the left mouse button (LMB) is pressed. The condition if is_dragging !&#x3D; true: helps optimize the code by preventing unnecessary updates to drag_start_pos.</p>
+<p>当按下左键（LMB）时，将 is_dragging 设置为 true。条件 if is_dragging !&#x3D; true: 通过避免不必要的更新 drag_start_pos 来优化代码。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">func _update():</span><br><span class="line">    print(str(drag_start_pos) + &quot; &quot; + str(drag_end_pos))</span><br><span class="line"></span><br><span class="line">    # Snapping to a 32x32 grid</span><br><span class="line">    if get_global_mouse_position().x &lt; drag_start_pos.x:</span><br><span class="line">        scale.x = -1</span><br><span class="line">    elif get_global_mouse_position().x &gt; drag_start_pos.x:</span><br><span class="line">        scale.x = 1</span><br><span class="line"></span><br><span class="line">    if get_global_mouse_position().y &lt; drag_start_pos.y:</span><br><span class="line">        scale.y = -1</span><br><span class="line">    elif get_global_mouse_position().y &gt; drag_start_pos.y:</span><br><span class="line">        scale.y = 1</span><br><span class="line"></span><br><span class="line">    # Snapping size to grid</span><br><span class="line">    size = (get_global_mouse_position() - drag_start_pos) * scale</span><br></pre></td></tr></table></figure>
+
+<p><strong>Simplified Version &#x2F; 简化版</strong><br>To make the code more efficient, we can simplify it as follows:</p>
+<p>为了使代码更高效，我们可以简化如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scale = sign(get_global_mouse_position() - drag_start_pos) * Vector2.ONE</span><br><span class="line">size = (get_global_mouse_position() - drag_start_pos) * scale</span><br></pre></td></tr></table></figure>
+
+<p><strong>Detecting Nodes Within the Selection Box &#x2F; 检测选择框内的节点</strong><br>When the mouse press ends, we can check which nodes are inside the selection box.</p>
+<p>当鼠标按键释放时，我们可以检查哪些节点位于选择框内。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">func _press_ended():</span><br><span class="line">    var node_to_get = get_tree().get_nodes_in_group(&quot;Selectable&quot;)</span><br><span class="line">    var node_in_rect = []</span><br><span class="line">    var x = []</span><br><span class="line">    if node_to_get != null:</span><br><span class="line">        for node in node_to_get:</span><br><span class="line">            if get_global_rect().has_point(node.global_position):</span><br><span class="line">                node_in_rect.append(node)</span><br><span class="line">                node.scale = Vector2(0.5, 0.5)</span><br><span class="line"></span><br><span class="line">    x = arrayDifference(node_to_get, node_in_rect)</span><br><span class="line">    for i in x:</span><br><span class="line">        i.scale = Vector2.ONE</span><br></pre></td></tr></table></figure>
+
+<p><strong>Array Difference Function &#x2F; 数组差异函数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func arrayDifference(largerArray, smallerArray):</span><br><span class="line">    var only_in_arr1 = []</span><br><span class="line">    for v in largerArray:</span><br><span class="line">        if not (v in smallerArray):</span><br><span class="line">            only_in_arr1.append(v)</span><br><span class="line">    return only_in_arr1</span><br></pre></td></tr></table></figure>
+<p><strong>Get Top-Left Corner of the Selection Box &#x2F; 获取选择框的左上角</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func _get_top_left_corner():</span><br><span class="line">    var x = drag_start_pos.x if drag_start_pos.x &lt;= drag_end_pos.x else drag_end_pos.x</span><br><span class="line">    var y = drag_start_pos.y if drag_start_pos.y &lt;= drag_end_pos.y else drag_end_pos.y</span><br><span class="line">    return(Vector2(x, y))</span><br></pre></td></tr></table></figure>
+<p>This approach provides a simple way to implement an RTS-like selection box in Godot 4.2. The logic is simple but efficient for a variety of selection-related tasks in your game development.</p>
+<p>这种方法提供了一种在Godot 4.2中实现类似RTS的选择框的简单方式。逻辑简单但高效，适用于游戏开发中的多种选择相关任务。</p>
+<p>I hope this helps you get started with selection boxes in your own projects! Feel free to adapt it to your needs.</p>
+<p>希望这对你在自己的项目中实现选择框有所帮助！随时可以根据需要调整。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+        
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/02/21/git-note/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          git_note
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/11/16/shader-blaster/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">shader-blaster</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-Create-an-RTS-Like-Selection-Box-in-Godot-4-2"><span class="nav-number">1.</span> <span class="nav-text">How to Create an RTS-Like Selection Box in Godot 4.2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-x2F-%E5%BC%95%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction &#x2F; 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-x2F-%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">Code &#x2F; 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Selection-Box-Logic-x2F-%E9%80%89%E6%8B%A9%E6%A1%86%E9%80%BB%E8%BE%91"><span class="nav-number">1.2.1.</span> <span class="nav-text">Selection Box Logic &#x2F; 选择框逻辑</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2019 - 2025 Duck Ridge All Rights Reserved.</p>
+	      
+	      
+  		   	<p id="copyRightCn">Todd Huang hold copyright</p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Duck Ridge
+          </div>
+          <div class="panel-body">
+            Copyright © 2025 Todd Huang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>rapid_fire | Duck Ridge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="让武器实现快速射击（机枪模式） - Godot 示例在游戏开发中，枪械的射击模式通常有多种实现方式。例如，一些游戏中的武器是单发射击的，而另一些则可能是连续射击（如机枪模式）。在这篇文章中，我将介绍如何将一个原本单发射击的武器转变为快速射击模式，并让玩家在按住射击按钮时能够持续发射子弹。我们将通过调整冷却时间间隔来实现这一点。 In game development, there are vari">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rapid_fire">
+<meta property="og:url" content="http://duck-ridge.github.io/2023/05/24/rapid-fire/index.html">
+<meta property="og:site_name" content="Duck Ridge">
+<meta property="og:description" content="让武器实现快速射击（机枪模式） - Godot 示例在游戏开发中，枪械的射击模式通常有多种实现方式。例如，一些游戏中的武器是单发射击的，而另一些则可能是连续射击（如机枪模式）。在这篇文章中，我将介绍如何将一个原本单发射击的武器转变为快速射击模式，并让玩家在按住射击按钮时能够持续发射子弹。我们将通过调整冷却时间间隔来实现这一点。 In game development, there are vari">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-24T15:23:02.000Z">
+<meta property="article:modified_time" content="2025-01-19T22:19:36.191Z">
+<meta property="article:author" content="Todd Huang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Duck Ridge" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.gif">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.gif">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.gif">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="index.search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://duck-ridge.github.io"></form>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-rapid-fire" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      rapid_fire
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2023/05/24/rapid-fire/" class="article-date">
+	  <time datetime="2023-05-24T15:23:02.000Z" itemprop="datePublished">2023-05-24</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="让武器实现快速射击（机枪模式）-Godot-示例"><a href="#让武器实现快速射击（机枪模式）-Godot-示例" class="headerlink" title="让武器实现快速射击（机枪模式） - Godot 示例"></a>让武器实现快速射击（机枪模式） - Godot 示例</h1><p>在游戏开发中，枪械的射击模式通常有多种实现方式。例如，一些游戏中的武器是单发射击的，而另一些则可能是连续射击（如机枪模式）。在这篇文章中，我将介绍如何将一个原本单发射击的武器转变为快速射击模式，并让玩家在按住射击按钮时能够持续发射子弹。我们将通过调整冷却时间间隔来实现这一点。</p>
+<p>In game development, there are various shooting modes for weapons. For example, some weapons in games are single-shot, while others may be continuous fire (like a machine gun). In this article, I will show how to convert a weapon from a single-shot to a rapid-fire mode, allowing the player to continuously fire bullets by holding down the shoot button. We will achieve this by adjusting the cooldown interval.</p>
+<h2 id="问题描述-x2F-Problem-Description"><a href="#问题描述-x2F-Problem-Description" class="headerlink" title="# 问题描述 &#x2F; Problem Description"></a># 问题描述 &#x2F; Problem Description</h2><p>原本的代码结构如下所示，武器是单次射击的，每次按下射击按钮都会触发一次射击：</p>
+<p>The original code structure is as follows, where the weapon is single-shot, and every time the shoot button is pressed, it triggers one shot:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># execute &quot;shoot()&quot; when &quot;ui_shoot&quot; just pressed</span><br><span class="line">func _unhandled_input(event):</span><br><span class="line">    if Input.is_action_just_pressed(&quot;ui_shoot&quot;):</span><br><span class="line">        shoot()</span><br><span class="line"></span><br><span class="line">func shoot():</span><br><span class="line">    if cooldown.is_stopped():</span><br><span class="line">        muzzle_anim()</span><br><span class="line">        var bullet_instance = Bullet.instance()</span><br><span class="line">        # var bullet_direction = guntip.global_position - gunbarrel.global_position</span><br><span class="line">        var bullet_direction = random_select_aim() - gunbarrel.global_position</span><br><span class="line">        emit_signal(&quot;fire&quot;, bullet_instance, gunbarrel.global_position, bullet_direction)</span><br><span class="line">        emit_signal(&quot;recoil&quot;)</span><br><span class="line">        cooldown.start()</span><br></pre></td></tr></table></figure>
+
+
+<p>如上所述，当按下射击按钮时，<code>shoot()</code>函数会触发，并生成一个子弹实例。每次按下按钮都会触发一次射击，冷却时间通过 <code>cooldown.start()</code> 控制。</p>
+<p>As mentioned above, when the shoot button is pressed, the <code>shoot()</code> function is triggered and a bullet instance is created. Each time the button is pressed, one shot is fired, and the cooldown is controlled by <code>cooldown.start()</code>.</p>
+<h2 id="改进目标-x2F-Improvement-Goal"><a href="#改进目标-x2F-Improvement-Goal" class="headerlink" title="# 改进目标 &#x2F; Improvement Goal"></a># 改进目标 &#x2F; Improvement Goal</h2><p>我们希望将武器改为类似机枪的模式，也就是当按住射击按钮时，武器能够持续发射子弹，而不需要每次都按下按钮。这可以通过减少每次射击之间的冷却时间来实现。</p>
+<p>The goal is to convert the weapon into a machine-gun-like mode, where holding down the shoot button causes the weapon to continuously fire bullets without needing to press the button each time. This can be achieved by reducing the cooldown interval between shots.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+        
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/06/01/Cursor/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Cursor? UI!  - Give it all to cursor
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/05/07/camera/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">camera</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A9%E6%AD%A6%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E5%B0%84%E5%87%BB%EF%BC%88%E6%9C%BA%E6%9E%AA%E6%A8%A1%E5%BC%8F%EF%BC%89-Godot-%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">让武器实现快速射击（机枪模式） - Godot 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0-x2F-Problem-Description"><span class="nav-number">1.1.</span> <span class="nav-text"># 问题描述 &#x2F; Problem Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E8%BF%9B%E7%9B%AE%E6%A0%87-x2F-Improvement-Goal"><span class="nav-number">1.2.</span> <span class="nav-text"># 改进目标 &#x2F; Improvement Goal</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2019 - 2025 Duck Ridge All Rights Reserved.</p>
+	      
+	      
+  		   	<p id="copyRightCn">Todd Huang hold copyright</p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Duck Ridge
+          </div>
+          <div class="panel-body">
+            Copyright © 2025 Todd Huang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

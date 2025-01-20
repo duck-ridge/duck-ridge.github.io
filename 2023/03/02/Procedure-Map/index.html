@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>procedure-map | Duck Ridge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="GodotRandom Monster" />
+  
+  
+  
+  
+  <meta name="description" content="This tech note derives from the tutorial provided by the YouTube channel HeartBeast. 在程序化地图中，地图将在游戏运行和加载时自动随机生成，并遵循特定规则。因此，理论上，玩家可以无限制地探索无穷无尽的区域。This tech note derives from the tutorial provided by th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Procedure-Map">
+<meta property="og:url" content="http://duck-ridge.github.io/2023/03/02/Procedure-Map/index.html">
+<meta property="og:site_name" content="Duck Ridge">
+<meta property="og:description" content="This tech note derives from the tutorial provided by the YouTube channel HeartBeast. 在程序化地图中，地图将在游戏运行和加载时自动随机生成，并遵循特定规则。因此，理论上，玩家可以无限制地探索无穷无尽的区域。This tech note derives from the tutorial provided by th">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://duck-ridge.github.io/2023/03/02/Procedure-Map/pm1.png">
+<meta property="og:image" content="http://duck-ridge.github.io/2023/03/02/Procedure-Map/pm2.png">
+<meta property="article:published_time" content="2023-03-02T11:13:37.000Z">
+<meta property="article:modified_time" content="2025-01-19T22:12:01.071Z">
+<meta property="article:author" content="Todd Huang">
+<meta property="article:tag" content="Godot">
+<meta property="article:tag" content="Random Monster">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://duck-ridge.github.io/2023/03/02/Procedure-Map/pm1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Duck Ridge" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.gif">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.gif">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.gif">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="index.search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://duck-ridge.github.io"></form>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Procedure-Map" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Procedure-Map
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2023/03/02/Procedure-Map/" class="article-date">
+	  <time datetime="2023-03-02T11:13:37.000Z" itemprop="datePublished">2023-03-02</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This tech note derives from the tutorial provided by the YouTube channel <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=2nk6bJBTtlA">HeartBeast</a>.</p>
+<p>在程序化地图中，地图将在游戏运行和加载时自动随机生成，并遵循特定规则。因此，理论上，玩家可以无限制地探索无穷无尽的区域。<br>This tech note derives from the tutorial provided by the YouTube channel <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=2nk6bJBTtlA">HeartBeast</a>.</p>
+<p>In a procedural map, the map will be generated automatically and randomly during gameplay and loading. It follows a specific rule, allowing players to theoretically enjoy an infinite area without limitations.</p>
+<h1 id="Bitmask"><a href="#Bitmask" class="headerlink" title="Bitmask"></a>Bitmask</h1><h1 id="位掩码"><a href="#位掩码" class="headerlink" title="位掩码"></a>位掩码</h1><p>在加载 <strong>TileMap</strong> 后，点击 <strong>添加新自动图块</strong> 并选择 <strong>图标</strong>，然后按照示例所示选择位掩码。<br>After the geomap is loaded, click <strong>Add New Autotile</strong>, select the <strong>icon</strong>, and then choose the <strong>bitmask</strong> as illustrated below.</p>
+<img src="/2023/03/02/Procedure-Map/pm1.png" class="" title="bitmask">
+
+<p>位掩码中的红色部分实际上是不同区块的连接处，因此方块将自动生成并调整为合适的形状以适应环境。<br>The red parts of the bitmask represent the junctions of different blocks. As a result, the blocks will automatically generate and adjust to the suitable shape to fit.</p>
+<p>以下是一个示例：<br>Here is an example down below.</p>
+<img src="/2023/03/02/Procedure-Map/pm2.png" class="" title="procedure_example">
+
+<hr>
+<h1 id="Walker"><a href="#Walker" class="headerlink" title="Walker"></a>Walker</h1><h1 id="行走器"><a href="#行走器" class="headerlink" title="行走器"></a>行走器</h1><p>在本节中，我们将创建一个自动行走的机器，称为 <strong>Walker</strong>。<br>In this section, we will build a self-directed walking machine called <strong>Walker</strong>.</p>
+<p>当它碰到边界时，会随机转向并继续行走几步，直到再次发生碰撞。<br>When it hits the border, it will turn in a random direction and walk a few steps until another collision occurs.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">extends Node</span><br><span class="line">class_name Walker</span><br><span class="line"></span><br><span class="line">const DIRECTIONS = [Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN]</span><br><span class="line"></span><br><span class="line"># The default position, direction, borders</span><br><span class="line">var position = Vector2.ZERO</span><br><span class="line">var direction = Vector2.RIGHT</span><br><span class="line">var borders = Rect2()</span><br><span class="line"></span><br><span class="line"># The default steps and step history are empty</span><br><span class="line">var step_history = []</span><br><span class="line">var step_since_turn = 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># In the init func, the starting posi &amp; new borders are set</span><br><span class="line">func _init(starting_position, new_borders):</span><br><span class="line">	# Rule_1: starting position inside new_borders</span><br><span class="line">	assert(new_borders.has_point(starting_position))</span><br><span class="line"></span><br><span class="line">	# assign the starting_position and new_borders when initialize</span><br><span class="line">	position = starting_position</span><br><span class="line">	borders = new_borders</span><br><span class="line"></span><br><span class="line">	# add the initial position to step_history as the first step</span><br><span class="line">	step_history.append(position)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># In this func, walk certain amount of range and store in history</span><br><span class="line">func walk(steps):</span><br><span class="line">	for s in steps:</span><br><span class="line">  # everytime we walk, there are 25% chance turn</span><br><span class="line">  # 100% chance turn, once walk straight more than 5 steps</span><br><span class="line">  if randf() &lt;= 0.25 or step_since_turn &gt; 5:</span><br><span class="line">   change_direction()</span><br><span class="line">  if step() == true:</span><br><span class="line">   step_history.append(position)</span><br><span class="line">  else:</span><br><span class="line">   change_direction()</span><br><span class="line">	return step_history</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># walker can take a step if walker inside border</span><br><span class="line"># move and return true if yes</span><br><span class="line">func step():</span><br><span class="line">	var target_step = position + direction</span><br><span class="line">	if borders.has_point(target_step):</span><br><span class="line">  position = target_step</span><br><span class="line">  step_since_turn += 1</span><br><span class="line">  return true</span><br><span class="line">	else:</span><br><span class="line">  return false</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># init the step_since_turen</span><br><span class="line">func change_direction():</span><br><span class="line">	step_since_turn = 0</span><br><span class="line">	# Be ware, this var is direction&#x27;s&#x27;</span><br><span class="line">  # Don&#x27;t just reference const DIRECTIONS, use func duplicate()</span><br><span class="line">	var directions = DIRECTIONS.duplicate()</span><br><span class="line">	# Since we choose to turn, no point head to the original direction</span><br><span class="line">	directions.erase(direction)</span><br><span class="line">	# randomly choose one direction from rest of them</span><br><span class="line">	# when a element poped from an array, it also removed from the array</span><br><span class="line">	directions.shuffle()</span><br><span class="line">	direction = directions.pop_front()</span><br><span class="line">	# while new position not in borders rect, choose a new direction</span><br><span class="line">	while not borders.has_point(position + direction):</span><br><span class="line">  direction = directions.pop_front()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Procedure-Map-in-Level"><a href="#Procedure-Map-in-Level" class="headerlink" title="Procedure Map in Level"></a>Procedure Map in Level</h1><h1 id="关卡中的程序化地图"><a href="#关卡中的程序化地图" class="headerlink" title="关卡中的程序化地图"></a>关卡中的程序化地图</h1><p>现在我们可以正确地放置瓦片，但它们并不是由程序生成的。<br>Now we can let the tiles be placed correctly; however, one problem is that they are not generated by the program.</p>
+<blockquote>
+<p>Command + Shift + Drag &#x3D; 缩放区块 scale blocks  </p>
+</blockquote>
+<p>因此，我们需要为世界场景编写一个脚本。<br>Thus, we need to write a script for the world scene.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">extends Node2D</span><br><span class="line"></span><br><span class="line"># No1,2 parameters are the number of cell</span><br><span class="line">var borders = Rect2(1, 1, 38, 21)</span><br><span class="line"></span><br><span class="line">onready var tileMap = $TileMap</span><br><span class="line">func _ready():</span><br><span class="line">	#generate a new random seed everytime it run.</span><br><span class="line">	randomize()</span><br><span class="line">	generate_level()</span><br><span class="line">	pass # Replace with function body.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func generate_level():</span><br><span class="line">	# When generate a &quot;new&quot; walker, the 2 parameters of new()</span><br><span class="line">	# are corresponding &quot;starting_position&quot; and &quot;new_borders&quot; in _init()</span><br><span class="line"></span><br><span class="line">	var walker = Walker.new(Vector2(19, 10), borders)</span><br><span class="line">	#Then use the created walker and let it walk around 500 steps</span><br><span class="line">	var map = walker.walk(500)</span><br><span class="line"></span><br><span class="line">	walker.queue_free()</span><br><span class="line"></span><br><span class="line">	for location in map:</span><br><span class="line">  tileMap.set_cellv(location, -1)</span><br><span class="line">	tileMap.update_bitmask_region(borders.position, borders.end)</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Tips-Debug"><a href="#Tips-Debug" class="headerlink" title="Tips - Debug"></a>Tips - Debug</h1><h1 id="调试小贴士"><a href="#调试小贴士" class="headerlink" title="调试小贴士"></a>调试小贴士</h1><p>当你像下面这样实例化一个类时：<br>When you instantiate one class like below  </p>
+<blockquote>
+<p>var walker &#x3D; Walker.new(Vector2(19, 10), borders)  </p>
+</blockquote>
+<p>如果 “Walker.new” 中的 “W” 使用小写字母，它将引用变量 “walker”，而不是之前创建的类 “Walker”。<br>If “W” in “Walker.new” is in lowercase, it will refer to the variable “walker” instead of the class “Walker,” which was created earlier.  </p>
+<p>为了解决这个问题，你可以更改类中的 <code>class_name</code>，或者更改变量名称。<br>To fix that, you can either change the <code>class_name</code> in the class or change the variable name.  </p>
+<p>确保变量名称与类名不同。<br>Be sure the variable name is different from <code>class_name</code>.  </p>
+<hr>
+<h1 id="补充内容：矩形地牢迷宫生成器"><a href="#补充内容：矩形地牢迷宫生成器" class="headerlink" title="补充内容：矩形地牢迷宫生成器"></a>补充内容：矩形地牢迷宫生成器</h1><h1 id="Supply-Content-for-Rectangular-Dungeon-Maze-Generator"><a href="#Supply-Content-for-Rectangular-Dungeon-Maze-Generator" class="headerlink" title="Supply Content for Rectangular Dungeon Maze Generator"></a>Supply Content for Rectangular Dungeon Maze Generator</h1><p>根据这个新函数，在我们创建地图时，可以在转角处生成随机大小的房间。<br>According to this new function, when we create a map, a random size room can be generated on the turning corner.  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func create_room(position):</span><br><span class="line">  # create a room size 1 to 4 * 1 to 3</span><br><span class="line">  var room_size = Vector2(randi()%4 + 1, randi() % 3 + 1)</span><br><span class="line">  # try to locate the topleft corner by the center</span><br><span class="line">  var top_left_corner = ( position - room_size/2 ).ceil()</span><br><span class="line"></span><br><span class="line">  # convert the &quot;room relative location&quot; to &quot;world abs location&quot;</span><br><span class="line">  # by the top_left_corner position (abs pos) and each cell position (rela pos)</span><br><span class="line">  # Enlist all room cell pos (var new_step()) into step history</span><br><span class="line">  for y in room_size.y:</span><br><span class="line">    for x in room_size.x:</span><br><span class="line">      var room_floor_step = top_left_pos + Vector2(x, y)</span><br><span class="line">        if borders.has_point(room_floor_step):</span><br><span class="line">          step_history.append(room_floor_step)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+<h1 id="Tips-Why-Use-ceil"><a href="#Tips-Why-Use-ceil" class="headerlink" title="Tips - Why Use ceil()"></a>Tips - Why Use <code>ceil()</code></h1><h1 id="小贴士-为什么使用-ceil"><a href="#小贴士-为什么使用-ceil" class="headerlink" title="小贴士 - 为什么使用 ceil()"></a>小贴士 - 为什么使用 <code>ceil()</code></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gdscript</span><br><span class="line">var top_left_corner = (position - room_size / 2).ceil()</span><br></pre></td></tr></table></figure>
+
+<p>在这里，我们提供一个示例，说明为什么在房间的长度和宽度为奇数时，需要使用 <code>ceil()</code> 函数来确定左上角的位置。<br>Here I provide a sample that explains why we use the <code>ceil()</code> function to locate the top-left corner when the length and width are odd numbers.  </p>
+<h3 id="示例-Example"><a href="#示例-Example" class="headerlink" title="示例 Example"></a>示例 Example</h3><ul>
+<li><strong>position (3, 2)</strong>: 房间中心 (room center)  </li>
+<li><strong>top_left (0, 0)</strong>: 计算出的左上角 (calculated top-left)  </li>
+<li><strong>size (5, 3)</strong>: 长 × 宽 (length × width)  </li>
+<li><strong>1&#x2F;2 size (2.5, 1.5)</strong>: 一半的大小 (half size)</li>
+</ul>
+<h3 id="说明-Note"><a href="#说明-Note" class="headerlink" title="说明 Note"></a>说明 Note</h3><p><code>ceil()</code> 函数确保在计算 top_left_corner 时，将浮点数向上取整，避免坐标偏移导致房间位置错误。<br>The <code>ceil()</code> function ensures that when calculating the <code>top_left_corner</code>, the floating-point numbers are rounded up to prevent coordinate offsets that could result in incorrect room placement.  </p>
+<blockquote>
+<p><strong>注意 (Note):</strong><br><code>if borders.has_point(room_floor_step):</code> 这一行代码确保房间地板步骤位于边界内部。<br>The <strong>if borders.has_point(room_floor_step):</strong> condition ensures that the room floor steps fall inside the border.  </p>
+</blockquote>
+<hr>
+<h1 id="Player-Initialization"><a href="#Player-Initialization" class="headerlink" title="Player Initialization"></a>Player Initialization</h1><h1 id="玩家初始化"><a href="#玩家初始化" class="headerlink" title="玩家初始化"></a>玩家初始化</h1><p>在本节中，我们将为这个迷宫&#x2F;地牢（或者随你怎么称呼）创建一个<strong>角色（avatar）</strong>。<br>Besides, we will create an <strong>avatar</strong> for this maze&#x2F;dungeon or whatever you call it.  </p>
+<p>此外，还会在迷宫&#x2F;地牢中生成一个<strong>最远端的出口</strong>。<br>Besides, there will be a <strong>self-generated exit port</strong> located farthest from the maze&#x2F;dungeon.  </p>
+<h2 id="目标-Objectives"><a href="#目标-Objectives" class="headerlink" title="目标 Objectives"></a>目标 Objectives</h2><ol>
+<li><p><strong>角色创建</strong>: 让玩家能够在迷宫中自由移动。<br> <strong>Avatar creation:</strong> Allow the player to move freely in the maze.  </p>
+</li>
+<li><p><strong>自动生成出口</strong>: 出口将根据迷宫布局自动生成在最远的位置。<br> <strong>Auto-generated exit:</strong> The exit will be automatically placed at the farthest point in the maze.  </p>
+</li>
+<li><p><strong>关卡切换</strong>: 当角色到达出口时，将进入下一关。<br> <strong>Level transition:</strong> When the avatar enters the exit, it will proceed to the next level.</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">extends KinematicBody2D</span><br><span class="line">export var velocity: int = 100</span><br><span class="line"></span><br><span class="line">func _physics_process(delta):</span><br><span class="line">    var x_input = Input.get_axis(&quot;ui_left&quot;, &quot;ui_right&quot;)</span><br><span class="line">    var y_input = Input.get_axis(&quot;ui_up&quot;, &quot;ui_down&quot;)</span><br><span class="line"></span><br><span class="line">    move_and_slide(Vector2(x_input, y_input) * velocity )</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Godot/" rel="tag">Godot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Random-Monster/" rel="tag">Random Monster</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/05/01/BehavTree-In-RM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          BehavTree in Random Monster
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/02/19/Behavior-Tree/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Behavior-Tree</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Bitmask"><span class="nav-number">1.</span> <span class="nav-text">Bitmask</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%8D%E6%8E%A9%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">位掩码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Walker"><span class="nav-number">3.</span> <span class="nav-text">Walker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%8C%E8%B5%B0%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">行走器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Procedure-Map-in-Level"><span class="nav-number">5.</span> <span class="nav-text">Procedure Map in Level</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E5%8D%A1%E4%B8%AD%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%9C%B0%E5%9B%BE"><span class="nav-number">6.</span> <span class="nav-text">关卡中的程序化地图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tips-Debug"><span class="nav-number">7.</span> <span class="nav-text">Tips - Debug</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E5%B0%8F%E8%B4%B4%E5%A3%AB"><span class="nav-number">8.</span> <span class="nav-text">调试小贴士</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E5%86%85%E5%AE%B9%EF%BC%9A%E7%9F%A9%E5%BD%A2%E5%9C%B0%E7%89%A2%E8%BF%B7%E5%AE%AB%E7%94%9F%E6%88%90%E5%99%A8"><span class="nav-number">9.</span> <span class="nav-text">补充内容：矩形地牢迷宫生成器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Supply-Content-for-Rectangular-Dungeon-Maze-Generator"><span class="nav-number">10.</span> <span class="nav-text">Supply Content for Rectangular Dungeon Maze Generator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tips-Why-Use-ceil"><span class="nav-number">11.</span> <span class="nav-text">Tips - Why Use ceil()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E8%B4%B4%E5%A3%AB-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8-ceil"><span class="nav-number">12.</span> <span class="nav-text">小贴士 - 为什么使用 ceil()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-Example"><span class="nav-number">12.0.1.</span> <span class="nav-text">示例 Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E-Note"><span class="nav-number">12.0.2.</span> <span class="nav-text">说明 Note</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Player-Initialization"><span class="nav-number">13.</span> <span class="nav-text">Player Initialization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%A9%E5%AE%B6%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">14.</span> <span class="nav-text">玩家初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-Objectives"><span class="nav-number">14.1.</span> <span class="nav-text">目标 Objectives</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2019 - 2025 Duck Ridge All Rights Reserved.</p>
+	      
+	      
+  		   	<p id="copyRightCn">Todd Huang hold copyright</p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Duck Ridge
+          </div>
+          <div class="panel-body">
+            Copyright © 2025 Todd Huang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
