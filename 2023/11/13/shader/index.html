@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>shader | Duck Ridge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="Lesson 1shader 可以是 tres res gdshader shader 形式的 在 property 里面 选择 Material，选择 创建 shader 而不是 canvas item 材质 关于 built in：in-代表只读，in out是可以读可以写，out是可以写 两种着色器 fragment 片段着色器， vertex 顶点着色器fragment 片段着色：图像有几">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shader">
+<meta property="og:url" content="http://duck-ridge.github.io/2023/11/13/shader/index.html">
+<meta property="og:site_name" content="Duck Ridge">
+<meta property="og:description" content="Lesson 1shader 可以是 tres res gdshader shader 形式的 在 property 里面 选择 Material，选择 创建 shader 而不是 canvas item 材质 关于 built in：in-代表只读，in out是可以读可以写，out是可以写 两种着色器 fragment 片段着色器， vertex 顶点着色器fragment 片段着色：图像有几">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-11-13T19:29:28.000Z">
+<meta property="article:modified_time" content="2025-01-29T16:07:35.653Z">
+<meta property="article:author" content="Todd Huang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Duck Ridge" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.gif">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.gif">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.gif">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="index.search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://duck-ridge.github.io"></form>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-shader" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      shader
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2023/11/13/shader/" class="article-date">
+	  <time datetime="2023-11-13T19:29:28.000Z" itemprop="datePublished">2023-11-13</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Lesson 1<br>shader 可以是 tres res gdshader shader 形式的</p>
+<p>在 property 里面 选择 Material，选择 创建 shader 而不是 canvas item 材质</p>
+<p>关于 built in：in-代表只读，in out是可以读可以写，out是可以写</p>
+<p>两种着色器 fragment 片段着色器， vertex 顶点着色器<br>fragment 片段着色：图像有几个顶点就会被执行几次<br>vertex 顶点着色器：每一个像素都会调用它</p>
+<p>fragment的Color本身不提供texture 显示。因此当你编辑 texture rect时只能编辑以下，若想要带上颜色则乘一个Color</p>
+<p>单独提取某一通道可以使用 Color.r 这类方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shader_type canvas_item;</span><br><span class="line"></span><br><span class="line">void fragment()&#123;</span><br><span class="line">	COLOR = texture(TEXTURE, UV);</span><br><span class="line">	COLOR = vec4(COLOR.r, 1.0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>uniform 相当于 export var<br>sampler 2D，可以让它选择拖入的texture，:hint_color 会出现一个调色板<br>varying 不能设定默认值，能从顶点着色器传到片段着色器</p>
+<p>好，你已经是大师了，来做点东西吧<br><em><strong>Advance Class</strong></em><br><em>explode effect</em><br>创建 particle node 。material使用particle shader<br>amount 2000<br>emission shape box<br>gravity 0</p>
+<p>有了这些参照物，再于material把particle shader 给 convert to shader material</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vec2 particlePosition = TRANSFORM[3].xy;</span><br><span class="line">vec2 textureS = vec2(textureSize(sprite, 0));</span><br><span class="line">vec4 spriteColor = texture(sprite, particlePosition / textureS + vec2(0.5, 0.5));</span><br><span class="line">COLOR = spriteColor;</span><br><span class="line">VELOCITY.xy = particlePosition * initial_linear_velocity;</span><br></pre></td></tr></table></figure>
+<p>在property里调整initial linear velocity和explosiveness</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">shader_type canvas_item;</span><br><span class="line"></span><br><span class="line">uniform sampler2D noise_img;</span><br><span class="line">uniform sampler2D gradient_tex;</span><br><span class="line"></span><br><span class="line">void fragment()&#123;</span><br><span class="line">//	vec4 screen_col = texture(noise_img, UV);</span><br><span class="line">//	COLOR = screen_col;</span><br><span class="line">	vec2 uv = vec2(UV.x + TIME, UV.y);</span><br><span class="line">	COLOR.rgb = texture(noise_img, uv).rgb;</span><br><span class="line">	COLOR.a = texture(TEXTURE, UV).a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SCREEN_TEXTURE:</span><br><span class="line">void fragment() &#123;</span><br><span class="line">    COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p><em><strong>water effect</strong></em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">shader_type canvas_item;</span><br><span class="line"></span><br><span class="line">uniform sampler2D noise;</span><br><span class="line">uniform vec2 scroll = vec2(0.05, 0.05);</span><br><span class="line">uniform float distortion_strength : hint_range(-1.0, 1.0) = 0.2;</span><br><span class="line"></span><br><span class="line">void fragment()&#123;</span><br><span class="line">	vec4 noise_col = texture(noise, UV + scroll * TIME);</span><br><span class="line">	vec4 screen_col = texture(SCREEN_TEXTURE, SCREEN_UV + distortion_strength * noise_col.rr);</span><br><span class="line">	COLOR = screen_col;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>noise_col.rr</p>
+<p>SCREEN_TEXTURE</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">shader_type canvas_item;</span><br><span class="line"></span><br><span class="line">uniform sampler2D noise1;</span><br><span class="line">uniform sampler2D noise2;</span><br><span class="line">uniform vec2 scroll1 = vec2(0.05, 0.05);</span><br><span class="line">uniform vec2 scroll2 = vec2(-0.05, -0.05);</span><br><span class="line"></span><br><span class="line">uniform float distortion_strength : hint_range(-1.0, 1.0) = 0.2;</span><br><span class="line"></span><br><span class="line">void fragment()&#123;</span><br><span class="line">  float depth = texture(noise1, UV + scroll1 * TIME).r * texture(noise2, UV + scroll2 * TIME).r</span><br><span class="line">	vec4 noise_col = texture(noise, UV + scroll * TIME);</span><br><span class="line">	vec4 screen_col = texture(SCREEN_TEXTURE, SCREEN_UV + distortion_strength * vec2(depth));</span><br><span class="line">	COLOR = screen_col;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>remember tick seamless</p>
+<p>trick: add a aqua tone</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uniform tone_color : source_color;</span><br></pre></td></tr></table></figure>
+
+<p>trick: add an top reflection</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">shader_type canvas_item;</span><br><span class="line"></span><br><span class="line">uniform sampler2D noise1;</span><br><span class="line">uniform sampler2D noise2;</span><br><span class="line">uniform vec2 scroll1 = vec2(0.05, 0.05);</span><br><span class="line">uniform vec2 scroll2 = vec2(-0.05, -0.05);</span><br><span class="line"></span><br><span class="line">uniform float distortion_strength : hint_range(-1.0, 1.0) = 0.2;</span><br><span class="line">uniform vec4 tone_color: hint_color;</span><br><span class="line"></span><br><span class="line">uniform vec4 top_color: hint_color;</span><br><span class="line">uniform float light_start: hint_range(0.0, 1.0, 0.275);</span><br><span class="line">uniform float light_end: hint_range(0.0, 1.0, 0.4);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void fragment()&#123;</span><br><span class="line">	float depth = texture(noise1, UV + scroll1 * TIME).r * texture(noise2, UV + scroll2 * TIME).r;</span><br><span class="line">	vec4 screen_col = texture(SCREEN_TEXTURE, SCREEN_UV + distortion_strength * vec2(depth));</span><br><span class="line">	vec4 top_light = smoothstep(light_start, light_end, depth) * top_color;</span><br><span class="line">	COLOR = screen_col * tone_color + top_color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><em>test</em><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ctevHwoRl24">https://www.youtube.com/watch?v=ctevHwoRl24</a></p>
+<p>*how to call shader in gdscript<br>$node.material.set_shader_param(“parameter_name”, value)<br>tween.tween_property(material, “shader_parameter&#x2F;size”, 0.0, 0.0)<br><em>show case and gallery</em><br><a target="_blank" rel="noopener" href="https://godotshaders.com/shader/">https://godotshaders.com/shader/</a></p>
+<p><em>RGB Split Glitch</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">shader_type canvas_item;</span><br><span class="line"></span><br><span class="line">// 振動の強さ</span><br><span class="line">uniform float shake_power = 0.03;</span><br><span class="line">// 振動率</span><br><span class="line">uniform float shake_rate : hint_range( 0.0, 1.0 ) = 0.2;</span><br><span class="line">// 振動速度</span><br><span class="line">uniform float shake_speed = 5.0;</span><br><span class="line">// 振動ブロックサイズ</span><br><span class="line">uniform float shake_block_size = 30.5;</span><br><span class="line">// 色の分離率</span><br><span class="line">uniform float shake_color_rate : hint_range( 0.0, 1.0 ) = 0.01;</span><br><span class="line"></span><br><span class="line">float random( float seed )</span><br><span class="line">&#123;</span><br><span class="line">	return fract( 543.2543 * sin( dot( vec2( seed, seed ), vec2( 3525.46, -54.3415 ) ) ) );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void fragment( )</span><br><span class="line">&#123;</span><br><span class="line">	float enable_shift = float(</span><br><span class="line">		random( trunc( TIME * shake_speed ) )</span><br><span class="line">	&lt;	shake_rate</span><br><span class="line">	);</span><br><span class="line"></span><br><span class="line">	vec2 fixed_uv = SCREEN_UV;</span><br><span class="line">	fixed_uv.x += (</span><br><span class="line">		random(</span><br><span class="line">			( trunc( SCREEN_UV.y * shake_block_size ) / shake_block_size )</span><br><span class="line">		+	TIME</span><br><span class="line">		) - 0.5</span><br><span class="line">	) * shake_power * enable_shift;</span><br><span class="line"></span><br><span class="line">	vec4 pixel_color = textureLod( SCREEN_TEXTURE, fixed_uv, 0.0 );</span><br><span class="line">	pixel_color.r = mix(</span><br><span class="line">		pixel_color.r</span><br><span class="line">	,	textureLod( SCREEN_TEXTURE, fixed_uv + vec2( shake_color_rate, 0.0 ), 0.0 ).r</span><br><span class="line">	,	enable_shift</span><br><span class="line">	);</span><br><span class="line">	pixel_color.b = mix(</span><br><span class="line">		pixel_color.b</span><br><span class="line">	,	textureLod( SCREEN_TEXTURE, fixed_uv + vec2( -shake_color_rate, 0.0 ), 0.0 ).b</span><br><span class="line">	,	enable_shift</span><br><span class="line">	);</span><br><span class="line">	COLOR = pixel_color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+<p>CamScam<br>first made a 3D Scene with 3 camera3D<br>The 3D Scene is a subnode of 2Dscene</p>
+<p>Node2DScene<br>    - Control<br>        - SubViewportContainer<br>            - SubViewport<br>                - Node3DScene (Camera3D_1 active)</p>
+<pre><code>    - SubViewportContainer
+        - SubViewport
+            - Node3DScene (Camera3D_1 active)
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+        
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/01/04/CsharpNote-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CsharpNote-1
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2019 - 2025 Duck Ridge All Rights Reserved.</p>
+	      
+	      
+  		   	<p id="copyRightCn">Todd Huang hold copyright</p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Duck Ridge
+          </div>
+          <div class="panel-body">
+            Copyright © 2025 Todd Huang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
